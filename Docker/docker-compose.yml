@@ -1,0 +1,49 @@
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: Docker/Dockerfile
+    image: 51-burguer-app
+    restart: always
+    ports:
+      - "8787:8080"
+    networks:
+      - sql_network
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  db:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_ROOT_USER=postgres
+      - POSTGRES_ROOT_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pg-data/:/docker-entrypoint-initdb.d/
+    #      - ./pg-data/data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - sql_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  sql_network:
+    driver: bridge
+
+#volumes:
+#  pg-data:

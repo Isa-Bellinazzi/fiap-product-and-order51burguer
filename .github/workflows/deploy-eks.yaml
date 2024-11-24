@@ -1,0 +1,60 @@
+name: Deploy AWS Academy - EKS
+
+on:
+  workflow_run:
+    workflows: ["Java CI with Maven"]
+    types:
+      - completed
+
+env:
+  REGION_DEFAULT: "us-east-1"
+  CLUSTER_NAME: "fiap51-eks-cluster"
+
+jobs:
+  deploy:
+    name: Deploy AWS Academy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: AWS Configure
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_AWS }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY_AWS }}
+          aws-session-token: ${{ secrets.TOKEN_AWS }}
+          aws-region: ${{ env.REGION_DEFAULT }}
+
+      - name: Update Kube Config
+        run: aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }} --region ${{ env.REGION_DEFAULT }}
+
+      - name: Package & Tag
+        run: | 
+          docker compose -f Docker/docker-compose.yml build web
+          docker tag docker.io/library/51-burguer-app secrets.REPO_ECR/51burguer-order-and-product-image:latest
+          docker ps
+
+      - name: Push to ECR
+        run: |
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin secrets.REPO_ECR
+          docker push secrets.REPO_ECR/51burguer-order-and-product-image:latest
+          
+
+      - name: Kube Secrets
+        if: ${{ github.ref_name == 'master' }} && github.event_name == 'push'
+        run: | 
+         kubectl create secret generic secret-burguer51 \
+            --from-literal=POSTGRES_URL="${{ secrets.POSTGRES_URL }}" \
+            --from-literal=POSTGRES_DATABASE=${{ secrets.POSTGRES_DATABASE }} \
+            --from-literal=POSTGRES_USER=${{ secrets.POSTGRES_USER }} \
+            --from-literal=POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+
+      - name: Kube Apply
+        if: ${{ github.ref_name == 'master' }} && github.event_name == 'push'
+        run: |
+          kubectl apply -f k8s/configmap-burguer-app.yaml
+          kubectl apply -f k8s/metrics.yaml
+          kubectl apply -f k8s/deployment-burguer-app.yaml
+          kubectl apply -f k8s/service-burguer-app.yaml
+          kubectl apply -f k8s/hpa-burguer-app.yaml
