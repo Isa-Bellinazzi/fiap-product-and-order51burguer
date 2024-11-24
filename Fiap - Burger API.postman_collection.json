@@ -1,0 +1,1957 @@
+{
+	"info": {
+		"_postman_id": "1dbfa519-946d-4b3d-a58a-2bbc4638645e",
+		"name": "Fiap - Burger API AWS",
+		"description": "API for managing burgers\n\nContact:\n\nCarlos Jafet - RM 354076 - [cjafet07@gmail.com](https://mailto:cjafet07@gmail.com)\n\nGuilherme Macedo Moreira - RM 353750 - [guilherme.macedomoreira@gmail.com](https://mailto:guilherme.macedomoreira@gmail.com)\n\nIsabella Bellinazzi da Silva - RM 354143 - [isabellinazzi@hotmail.com](https://mailto:isabellinazzi@hotmail.com)\n\nJuliano Silva Nunes - RM 354144 - [silva.juliano8130@gmail.com](https://mailto:silva.juliano8130@gmail.com)\n\nThiago Augusto Nery - RM 355063 - [doomerbr@gmail.com](https://mailto:doomerbr@gmail.com)\n\nContact Support:  \nName: Grupo 51",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23604147"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "Atualiza produto - Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3Mjc3NTczNTksImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.U3IQIYYQSkJQaQVv5eSQV014NrblOw7NEUP34VCR2R8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/products?id=1&name=Cheeseburger&category=DRINK&price=5.0&description=Classic cheeseburger&preparationTime=5&image=http://gangstaburguer.com/images/cheeseburger.jpg",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(Required) Id do Produto"
+								},
+								{
+									"key": "name",
+									"value": "Cheeseburger",
+									"description": "(Required) Nome do Produto"
+								},
+								{
+									"key": "category",
+									"value": "DRINK",
+									"description": "(Required)  Categoria do produto (DRINK, SNACK, DESSERT, SIDE_DISH)"
+								},
+								{
+									"key": "price",
+									"value": "5.0",
+									"description": "(Required) Preço do Produto"
+								},
+								{
+									"key": "description",
+									"value": "Classic cheeseburger",
+									"description": "(Required)  Descrição do Produto"
+								},
+								{
+									"key": "preparationTime",
+									"value": "5",
+									"description": "(Required) Tempo de preparo do Produto"
+								},
+								{
+									"key": "image",
+									"value": "http://gangstaburguer.com/images/cheeseburger.jpg",
+									"description": "(Required) Link da imagem do Produto"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Produto atualizado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/products?id=<integer>&name=<string>&category=DRINK&price=<double>&description=<string>&preparationTime=<integer>&image=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) "
+										},
+										{
+											"key": "name",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "category",
+											"value": "DRINK",
+											"description": "(Required) "
+										},
+										{
+											"key": "price",
+											"value": "<double>",
+											"description": "(Required) "
+										},
+										{
+											"key": "description",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "preparationTime",
+											"value": "<integer>",
+											"description": "(Required) "
+										},
+										{
+											"key": "image",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"category\": \"DRINK\",\n  \"price\": \"<double>\",\n  \"description\": \"<string>\",\n  \"preparationTime\": \"<integer>\",\n  \"image\": \"<string>\"\n}"
+						},
+						{
+							"name": "Infos de produto invalido",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products?id=<integer>&name=<string>&category=DRINK&price=<double>&description=<string>&preparationTime=<integer>&image=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) "
+										},
+										{
+											"key": "name",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "category",
+											"value": "DRINK",
+											"description": "(Required) "
+										},
+										{
+											"key": "price",
+											"value": "<double>",
+											"description": "(Required) "
+										},
+										{
+											"key": "description",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "preparationTime",
+											"value": "<integer>",
+											"description": "(Required) "
+										},
+										{
+											"key": "image",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Cadastra produto -  Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3Mjc3NTI2NTMsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.whVKjtjJdJpl_JXyMc_P4kJPFZgWCEU3nRgKnnNJV10",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "//Categories: DRINK, SNACK, DESSERT, SIDE_DISH\n{\n  \"name\": \"HAMBURGUER FIAP\",\n  \"category\": \"SNACK\",\n  \"price\": \"20.0\",\n  \"description\": \"HAMBURGUER COM MUITO QUEIJO\",\n  \"preparationTime\": \"5\",\n  \"image\": \"http://gangstaburguer.com/images/hamburguerfiap.jpg\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/products",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Produto cadastrado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"category\": \"DESSERT\",\n  \"price\": \"<double>\",\n  \"description\": \"<string>\",\n  \"preparationTime\": \"<integer>\",\n  \"image\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"category\": \"DRINK\",\n  \"price\": \"<double>\",\n  \"description\": \"<string>\",\n  \"preparationTime\": \"<integer>\",\n  \"image\": \"<string>\"\n}"
+						},
+						{
+							"name": "Infos de produto invalido",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"category\": \"DESSERT\",\n  \"price\": \"<double>\",\n  \"description\": \"<string>\",\n  \"preparationTime\": \"<integer>\",\n  \"image\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Consulta produto por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiIwNzkwMDU4NTAyOCIsIm5hbWUiOiJKb8OjbyBTaWx2YSIsImlkIjoxLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNzI3NzUyNjUzLCJlbWFpbCI6ImpvYW9zaWx2YUBleGFtcGxlLmNvbSJ9.rc1hgnr4H1CagL5P-AznjLgM_ojt2gXZO6FNrAxL-Jk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/products/:id",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(Required) ID do produto a ser consultado"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Encontrou produto",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/products/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"category\": \"DRINK\",\n  \"price\": \"<double>\",\n  \"description\": \"<string>\",\n  \"preparationTime\": \"<integer>\",\n  \"image\": \"<string>\"\n}"
+						},
+						{
+							"name": "Id de produto invalido",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Produto não encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Deleta produto por ID - Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3Mjc3NTI2NTMsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.whVKjtjJdJpl_JXyMc_P4kJPFZgWCEU3nRgKnnNJV10",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/products/:id",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "22",
+									"description": "(Required) ID do produto a ser deletado"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Deletou produto",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/products/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"category\": \"DRINK\",\n  \"price\": \"<double>\",\n  \"description\": \"<string>\",\n  \"preparationTime\": \"<integer>\",\n  \"image\": \"<string>\"\n}"
+						},
+						{
+							"name": "Id de produto invalido",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Produto não encontrado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Consulta produtos por categoria",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/swagger-ui/index.html/products/category/:category",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"swagger-ui",
+								"index.html",
+								"products",
+								"category",
+								":category"
+							],
+							"variable": [
+								{
+									"key": "category",
+									"value": "DRINK",
+									"description": "(Required) Categoria dos produtos a serem consultados (DRINK, SNACK, DESSERT, SIDE_DISH)"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Encontrou produtos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/products/category/:category",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"category",
+										":category"
+									],
+									"variable": [
+										{
+											"key": "category"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "<string>"
+						},
+						{
+							"name": "Categoria de produto inválida",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/category/:category",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"category",
+										":category"
+									],
+									"variable": [
+										{
+											"key": "category"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Produtos não encontrados para a categoria",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/products/category/:category",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"products",
+										"category",
+										":category"
+									],
+									"variable": [
+										{
+											"key": "category"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "Consulta todos os pedidos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3Mjc3NTczNTksImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.U3IQIYYQSkJQaQVv5eSQV014NrblOw7NEUP34VCR2R8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/orders",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Encontrou pedidos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"totalPrice\": \"<double>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"timeWaitingOrder\": \"<double>\",\n  \"client\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"cpf\": \"<string>\"\n  },\n  \"products\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"category\": \"DESSERT\",\n      \"price\": \"<double>\",\n      \"description\": \"<string>\",\n      \"preparationTime\": \"<integer>\",\n      \"image\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"category\": \"DRINK\",\n      \"price\": \"<double>\",\n      \"description\": \"<string>\",\n      \"preparationTime\": \"<integer>\",\n      \"image\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Nenhum pedido encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Cria um novo pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3Mjc3NTczNTksImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.U3IQIYYQSkJQaQVv5eSQV014NrblOw7NEUP34VCR2R8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"items\": [\n    {\n      \"productId\": \"1\",\n      \"quantity\": \"1\"\n    },\n    {\n      \"productId\": \"2\",\n      \"quantity\": \"2\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/orders",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Pedido criado com sucesso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"idClient\": \"<integer>\",\n  \"items\": [\n    {\n      \"productId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"totalPrice\": \"<double>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"timeWaitingOrder\": \"<double>\",\n  \"client\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"cpf\": \"<string>\"\n  },\n  \"products\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"category\": \"DESSERT\",\n      \"price\": \"<double>\",\n      \"description\": \"<string>\",\n      \"preparationTime\": \"<integer>\",\n      \"image\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"category\": \"DRINK\",\n      \"price\": \"<double>\",\n      \"description\": \"<string>\",\n      \"preparationTime\": \"<integer>\",\n      \"image\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Requisição inválida",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"idClient\": \"<integer>\",\n  \"items\": [\n    {\n      \"productId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Erro interno do servidor",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"idClient\": \"<integer>\",\n  \"items\": [\n    {\n      \"productId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productId\": \"<integer>\",\n      \"quantity\": \"<integer>\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Atualiza o status de um pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3Mjc3NTczNTksImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.U3IQIYYQSkJQaQVv5eSQV014NrblOw7NEUP34VCR2R8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/orders/:id/status?newStatus=PREPARATION",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"orders",
+								":id",
+								"status"
+							],
+							"query": [
+								{
+									"key": "newStatus",
+									"value": "PREPARATION",
+									"description": "(Required) Novo status do pedido (PREPARATION, READY, FINISHED"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(Required) ID do pedido a ser atualizado"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Status do pedido atualizado com sucesso",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/orders/:id/status?newStatus=PREPARATION",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										":id",
+										"status"
+									],
+									"query": [
+										{
+											"key": "newStatus",
+											"value": "PREPARATION",
+											"description": "(Required) Novo status do pedido"
+										}
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"timeWaitingOrder\": \"<integer>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"status\": \"FINISHED\",\n  \"totalPrice\": \"<double>\",\n  \"client\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"cpf\": \"<string>\"\n  },\n  \"orderItemsList\": [\n    {\n      \"id\": \"<long>\",\n      \"order\": {\n        \"value\": \"<Circular reference to #/components/schemas/OrderEntity detected>\"\n      },\n      \"product\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"category\": \"SNACK\",\n        \"price\": \"<double>\",\n        \"description\": \"<string>\",\n        \"preparationTime\": \"<integer>\",\n        \"image\": \"<string>\"\n      },\n      \"totalProductPrice\": \"<double>\",\n      \"preparationTime\": \"<string>\",\n      \"description\": \"<string>\",\n      \"amount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"order\": {\n        \"value\": \"<Circular reference to #/components/schemas/OrderEntity detected>\"\n      },\n      \"product\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"category\": \"DRINK\",\n        \"price\": \"<double>\",\n        \"description\": \"<string>\",\n        \"preparationTime\": \"<integer>\",\n        \"image\": \"<string>\"\n      },\n      \"totalProductPrice\": \"<double>\",\n      \"preparationTime\": \"<string>\",\n      \"description\": \"<string>\",\n      \"amount\": \"<integer>\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Requisição inválida",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/orders/:id/status?newStatus=PREPARATION",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										":id",
+										"status"
+									],
+									"query": [
+										{
+											"key": "newStatus",
+											"value": "PREPARATION",
+											"description": "(Required) Novo status do pedido"
+										}
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Pedido não encontrado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/orders/:id/status?newStatus=PREPARATION",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										":id",
+										"status"
+									],
+									"query": [
+										{
+											"key": "newStatus",
+											"value": "PREPARATION",
+											"description": "(Required) Novo status do pedido"
+										}
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Consulta pedidos por status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/orders/status/:status",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"orders",
+								"status",
+								":status"
+							],
+							"variable": [
+								{
+									"key": "status",
+									"value": "WAITINGPAYMENT",
+									"description": "(Required) Status do pedido  (WAITINGPAYMENT, APPROVEDPAYMENT, REJECTEDPAYMENT, RECEIVED, PREPARATION, READY, FINISHED, CANCELED"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Encontrou pedidos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/orders/status/:status",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										"status",
+										":status"
+									],
+									"variable": [
+										{
+											"key": "status"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"totalPrice\": \"<double>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"timeWaitingOrder\": \"<double>\",\n  \"client\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"cpf\": \"<string>\"\n  },\n  \"products\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"category\": \"DESSERT\",\n      \"price\": \"<double>\",\n      \"description\": \"<string>\",\n      \"preparationTime\": \"<integer>\",\n      \"image\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"category\": \"DRINK\",\n      \"price\": \"<double>\",\n      \"description\": \"<string>\",\n      \"preparationTime\": \"<integer>\",\n      \"image\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Status inválido",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/orders/status/:status",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										"status",
+										":status"
+									],
+									"variable": [
+										{
+											"key": "status"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Nenhum pedido encontrado com o status informado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/orders/status/:status",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										"status",
+										":status"
+									],
+									"variable": [
+										{
+											"key": "status"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Consulta pedido por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiIwNzkwMDU4NTAyOCIsIm5hbWUiOiJKb8OjbyBTaWx2YSIsImlkIjoxLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNzI3NzU3MzU5LCJlbWFpbCI6ImpvYW9zaWx2YUBleGFtcGxlLmNvbSJ9.fuYJOabJ_Mmoof7A14lQfgrZXuvcxxPcNK4Hag_6V_Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/orders/:id",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(Required) ID do pedido a ser consultado"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Encontrou pedido",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/orders/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"totalPrice\": \"<double>\",\n  \"dateCreated\": \"<dateTime>\",\n  \"timeWaitingOrder\": \"<double>\",\n  \"client\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"cpf\": \"<string>\"\n  },\n  \"products\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"category\": \"DESSERT\",\n      \"price\": \"<double>\",\n      \"description\": \"<string>\",\n      \"preparationTime\": \"<integer>\",\n      \"image\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"category\": \"DRINK\",\n      \"price\": \"<double>\",\n      \"description\": \"<string>\",\n      \"preparationTime\": \"<integer>\",\n      \"image\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Id de pedido inválido",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/orders/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Pedido não encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/orders/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "checkout",
+			"item": [
+				{
+					"name": "Cria checkout por ID do pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiIwNzkwMDU4NTAyOCIsIm5hbWUiOiJKb8OjbyBTaWx2YSIsImlkIjoxLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNzI3NzU3MzU5LCJlbWFpbCI6ImpvYW9zaWx2YUBleGFtcGxlLmNvbSJ9.fuYJOabJ_Mmoof7A14lQfgrZXuvcxxPcNK4Hag_6V_Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/checkout/criar/:id/:status_order",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"checkout",
+								"criar",
+								":id",
+								":status_order"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(Required) ID do pedido para criar checkout"
+								},
+								{
+									"key": "status_order",
+									"value": "APPROVEDPAYMENT",
+									"description": "(Required) Status do Pedido ( APPROVEDPAYMENT, REJECTEDPAYMENT)"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Checkout criado com sucesso!",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/checkout/criar/:id/:status_order",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"checkout",
+										"criar",
+										":id",
+										":status_order"
+									],
+									"variable": [
+										{
+											"key": "id"
+										},
+										{
+											"key": "status_order"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"order\": {\n    \"id\": \"<integer>\",\n    \"timeWaitingOrder\": \"<integer>\",\n    \"dateCreated\": \"<dateTime>\",\n    \"status\": \"WAITINGPAYMENT\",\n    \"totalPrice\": \"<double>\",\n    \"client\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"cpf\": \"<string>\"\n    },\n    \"orderItemsList\": [\n      {\n        \"id\": \"<long>\",\n        \"order\": {\n          \"value\": \"<Circular reference to #/components/schemas/Order detected>\"\n        },\n        \"product\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"category\": \"DESSERT\",\n          \"price\": \"<double>\",\n          \"description\": \"<string>\",\n          \"preparationTime\": \"<integer>\",\n          \"image\": \"<string>\"\n        },\n        \"totalProductPrice\": \"<double>\",\n        \"preparationTime\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amount\": \"<integer>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"order\": {\n          \"value\": \"<Circular reference to #/components/schemas/Order detected>\"\n        },\n        \"product\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"category\": \"SNACK\",\n          \"price\": \"<double>\",\n          \"description\": \"<string>\",\n          \"preparationTime\": \"<integer>\",\n          \"image\": \"<string>\"\n        },\n        \"totalProductPrice\": \"<double>\",\n        \"preparationTime\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amount\": \"<integer>\"\n      }\n    ]\n  },\n  \"dateCreated\": \"<dateTime>\",\n  \"paymentStatus\": \"APPROVEDPAYMENT\",\n  \"totalPrice\": \"<double>\",\n  \"transactId\": \"<string>\"\n}"
+						},
+						{
+							"name": "Não foi possível criar o checkout para este pedido!",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/checkout/criar/:id/:status_order",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"checkout",
+										"criar",
+										":id",
+										":status_order"
+									],
+									"variable": [
+										{
+											"key": "id"
+										},
+										{
+											"key": "status_order"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Checkout não encontrado, tente outro!",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/checkout/criar/:id/:status_order",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"checkout",
+										"criar",
+										":id",
+										":status_order"
+									],
+									"variable": [
+										{
+											"key": "id"
+										},
+										{
+											"key": "status_order"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Consulta checkout do pedido por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiIwNzkwMDU4NTAyOCIsIm5hbWUiOiJKb8OjbyBTaWx2YSIsImlkIjoxLCJpc0FkbWluIjpmYWxzZSwiZXhwIjoxNzI3NzU3MzU5LCJlbWFpbCI6ImpvYW9zaWx2YUBleGFtcGxlLmNvbSJ9.fuYJOabJ_Mmoof7A14lQfgrZXuvcxxPcNK4Hag_6V_Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://aa4b76e56e8044a098a1882f19900bc0-1394836592.us-east-1.elb.amazonaws.com/checkout/:id",
+							"protocol": "http",
+							"host": [
+								"aa4b76e56e8044a098a1882f19900bc0-1394836592",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"checkout",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2",
+									"description": "(Required) ID do pedido a ser consultado"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Consulta de checkout do Pedido, realizada com sucesso!",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/checkout/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"checkout",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<integer>\",\n  \"order\": {\n    \"id\": \"<integer>\",\n    \"timeWaitingOrder\": \"<integer>\",\n    \"dateCreated\": \"<dateTime>\",\n    \"status\": \"WAITINGPAYMENT\",\n    \"totalPrice\": \"<double>\",\n    \"client\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"cpf\": \"<string>\"\n    },\n    \"orderItemsList\": [\n      {\n        \"id\": \"<long>\",\n        \"order\": {\n          \"value\": \"<Circular reference to #/components/schemas/Order detected>\"\n        },\n        \"product\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"category\": \"DESSERT\",\n          \"price\": \"<double>\",\n          \"description\": \"<string>\",\n          \"preparationTime\": \"<integer>\",\n          \"image\": \"<string>\"\n        },\n        \"totalProductPrice\": \"<double>\",\n        \"preparationTime\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amount\": \"<integer>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"order\": {\n          \"value\": \"<Circular reference to #/components/schemas/Order detected>\"\n        },\n        \"product\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"category\": \"SNACK\",\n          \"price\": \"<double>\",\n          \"description\": \"<string>\",\n          \"preparationTime\": \"<integer>\",\n          \"image\": \"<string>\"\n        },\n        \"totalProductPrice\": \"<double>\",\n        \"preparationTime\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amount\": \"<integer>\"\n      }\n    ]\n  },\n  \"dateCreated\": \"<dateTime>\",\n  \"paymentStatus\": \"APPROVEDPAYMENT\",\n  \"totalPrice\": \"<double>\",\n  \"transactId\": \"<string>\"\n}"
+						},
+						{
+							"name": "Não foi possível encontrar o checkout para este pedido!",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/checkout/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"checkout",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Pedido não encontrado, tente outro!",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/checkout/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"checkout",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "user cognito",
+			"item": [
+				{
+					"name": "Cria Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"775.829.300-02\",\r\n    \"name\": \"Maria Nunes\",\r\n    \"email\": \"mariaNunes@example.com\",\r\n    \"password\": \"@Burguer51\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ni553jt8b7.execute-api.us-east-1.amazonaws.com/Prod/admin",
+							"protocol": "https",
+							"host": [
+								"ni553jt8b7",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"Prod",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"079.005.850-28\",\r\n    \"name\": \"João Silva\",\r\n    \"email\": \"joaosilva@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ni553jt8b7.execute-api.us-east-1.amazonaws.com/Prod/user",
+							"protocol": "https",
+							"host": [
+								"ni553jt8b7",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"Prod",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"775.829.300-02\",\r\n    \"password\": \"@Burguer51\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ni553jt8b7.execute-api.us-east-1.amazonaws.com/Prod/user",
+							"protocol": "https",
+							"host": [
+								"ni553jt8b7",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"Prod",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"079.005.850-28\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ni553jt8b7.execute-api.us-east-1.amazonaws.com/Prod/user",
+							"protocol": "https",
+							"host": [
+								"ni553jt8b7",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"Prod",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gera Usuário generico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ni553jt8b7.execute-api.us-east-1.amazonaws.com/Prod/user",
+							"protocol": "https",
+							"host": [
+								"ni553jt8b7",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"Prod",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
