@@ -30,25 +30,25 @@ jobs:
         run: aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }} --region ${{ env.REGION_DEFAULT }}
 
       - name: Package & Tag
-        run: |
+        run: | 
           docker compose -f Docker/docker-compose.yml build web
-          docker tag docker.io/library/51-burguer-app 375275125343.dkr.ecr.us-east-1.amazonaws.com/51burguer-image:latest
+          docker tag docker.io/library/51-burguer-app secrets.REPO_ECR/51burguer-order-and-product-image:latest
           docker ps
 
       - name: Push to ECR
         run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 375275125343.dkr.ecr.us-east-1.amazonaws.com
-          docker push 375275125343.dkr.ecr.us-east-1.amazonaws.com/51burguer-image:latest
-
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin secrets.REPO_ECR
+          docker push secrets.REPO_ECR/51burguer-order-and-product-image:latest
+          
 
       - name: Kube Secrets
         if: ${{ github.ref_name == 'master' }} && github.event_name == 'push'
-        run: |
-          kubectl create secret generic secret-burguer51 \
-             --from-literal=POSTGRES_URL="${{ secrets.POSTGRES_URL }}" \
-             --from-literal=POSTGRES_DATABASE=${{ secrets.POSTGRES_DATABASE }} \
-             --from-literal=POSTGRES_USER=${{ secrets.POSTGRES_USER }} \
-             --from-literal=POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+        run: | 
+         kubectl create secret generic secret-burguer51 \
+            --from-literal=POSTGRES_URL="${{ secrets.POSTGRES_URL }}" \
+            --from-literal=POSTGRES_DATABASE=${{ secrets.POSTGRES_DATABASE }} \
+            --from-literal=POSTGRES_USER=${{ secrets.POSTGRES_USER }} \
+            --from-literal=POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
 
       - name: Kube Apply
         if: ${{ github.ref_name == 'master' }} && github.event_name == 'push'

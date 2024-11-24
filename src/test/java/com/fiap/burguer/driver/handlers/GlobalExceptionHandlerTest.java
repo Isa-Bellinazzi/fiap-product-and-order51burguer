@@ -106,7 +106,7 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
     void testHandleGlobalException() throws Exception {
         String defaultErrorMessage = "Erro na requisição, por favor contacte o suporte";
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/unknown-endpoint") // Um endpoint desconhecido para causar uma exceção global
+                        .get("/unknown-endpoint")
                 )
                 .andExpect(MockMvcResultMatchers.status().isInternalServerError())
                 .andExpect(jsonPath("$.status").value(HttpStatus.INTERNAL_SERVER_ERROR.value()))
