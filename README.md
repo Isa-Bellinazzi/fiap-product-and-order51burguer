@@ -1,7 +1,5 @@
 # Fiap 51 Burguer - Pedido e Produto
 
-# Fiap 51 Burguer
-
 Sistema de pedidos de lanche. Quarto tech challenge do curso de Pós Tech - turma 6SOAT de Software Architecture para aplicar conceitos Microserviço.
 
 ## 👨‍🔧👩‍🔧 Integrantes
