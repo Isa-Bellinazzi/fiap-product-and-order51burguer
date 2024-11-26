@@ -1,5 +1,6 @@
 package com.fiap.burguer.driver.dto;
 import com.fiap.burguer.core.application.enums.CategoryProduct;
+import com.fiap.burguer.core.application.enums.CategoryProduct;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

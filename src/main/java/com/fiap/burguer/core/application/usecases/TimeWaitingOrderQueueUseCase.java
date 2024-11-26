@@ -15,14 +15,20 @@ public class TimeWaitingOrderQueueUseCase {
     }
 
     public int execute(String authorizationHeader) {
+        int totalWaitingTime = 0;
         try {
             List<Order> receivedOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED, authorizationHeader);
-            List<Order> preparationOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader);
-
-            return sumTimeWaitingOrder(receivedOrderEntities) + sumTimeWaitingOrder(preparationOrderEntities);
-        } catch (ResourceNotFoundException ex) {
-            return 0;
+            totalWaitingTime += sumTimeWaitingOrder(receivedOrderEntities);
+        } catch (ResourceNotFoundException ignored) {
         }
+
+        try {
+            List<Order> preparationOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader);
+            totalWaitingTime += sumTimeWaitingOrder(preparationOrderEntities);
+        } catch (ResourceNotFoundException ignored) {
+        }
+
+        return totalWaitingTime;
     }
 
     private int sumTimeWaitingOrder(List<Order> orders) {

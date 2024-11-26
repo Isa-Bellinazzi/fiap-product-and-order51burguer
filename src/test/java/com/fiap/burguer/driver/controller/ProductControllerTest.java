@@ -61,7 +61,6 @@ public class ProductControllerTest extends IntegrationTest {
 
         ProductCreate productCreate = new ProductCreate("name", "image", 40, "description", 10, CategoryProduct.DESSERT);
         when(this.productUseCases.saveProduct(productCreate, "authorizationHeader")).thenReturn(null);
-        // Converte o objeto para JSON
         String json = new ObjectMapper().writeValueAsString(productCreate);
 
         mvc.perform(post("/products")
@@ -74,7 +73,6 @@ public class ProductControllerTest extends IntegrationTest {
     void testUpdateProductTest() throws Exception {
         Product product = new Product();
         when(this.productUseCases.updateProduct( product, "authorizationHeader")).thenReturn(null);
-        // Converte o objeto para JSON
         String json = new ObjectMapper().writeValueAsString(product);
 
         mvc.perform(put("/products")

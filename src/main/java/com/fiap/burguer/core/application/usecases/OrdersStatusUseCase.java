@@ -1,5 +1,4 @@
 package com.fiap.burguer.core.application.usecases;
-
 import com.fiap.burguer.core.application.Exception.RequestException;
 import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.enums.StatusOrder;
@@ -42,7 +41,7 @@ public class OrdersStatusUseCase {
         orderPort.save(order);
     }
 
-    private boolean isValidStatusUpdate(StatusOrder currentStatus, StatusOrder newStatus) {
+    public     boolean isValidStatusUpdate(StatusOrder currentStatus, StatusOrder newStatus) {
         if (!isValidNextStatus(currentStatus, newStatus)) {
             return false;
         }
@@ -51,14 +50,15 @@ public class OrdersStatusUseCase {
             return isCancelValid(currentStatus);
         }
 
-        if (newStatus == StatusOrder.RECEIVED && currentStatus != StatusOrder.APPROVEDPAYMENT) {
-            return false;
-        }
+
 
         return true;
     }
 
-    private boolean isValidNextStatus(StatusOrder currentStatus, StatusOrder newStatus) {
+    public boolean isValidNextStatus(StatusOrder currentStatus, StatusOrder newStatus) {
+        if (newStatus == StatusOrder.RECEIVED && currentStatus != StatusOrder.APPROVEDPAYMENT) {
+            return false;
+        }
         return switch (currentStatus) {
             case WAITINGPAYMENT ->
                     newStatus == StatusOrder.APPROVEDPAYMENT || newStatus == StatusOrder.REJECTEDPAYMENT || newStatus == StatusOrder.CANCELED;
@@ -70,7 +70,10 @@ public class OrdersStatusUseCase {
         };
     }
 
-    private boolean isCancelValid(StatusOrder currentStatus) {
+    public boolean isCancelValid(StatusOrder currentStatus) {
         return currentStatus == StatusOrder.WAITINGPAYMENT || currentStatus == StatusOrder.REJECTEDPAYMENT;
     }
+
+
+
 }
