@@ -1,75 +1,142 @@
 package com.fiap.burguer.infraestructure.mappers;
 
+import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.domain.Order;
 import com.fiap.burguer.core.domain.OrderItem;
-import com.fiap.burguer.core.domain.Product;
 import com.fiap.burguer.infraestructure.entities.OrderEntity;
 import com.fiap.burguer.infraestructure.entities.OrderItemEntity;
-import com.fiap.burguer.infraestructure.entities.ProductEntity;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.beans.BeanUtils;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OrderMapperTest {
-
-    @Mock
-    private OrderItemMapper orderItemMapper;  // Mockando o OrderItemMapper
-
-    @InjectMocks
-    private OrderMapper orderMapper;
+class OrderMapperTest {
 
     @Test
-    public void testToEntity() {
-        Product product = new Product();
-        product.setName("Fries");
-
-        ProductEntity productEntity = new ProductEntity();
-        productEntity.setName("Burger");
-
-        OrderItem orderItem = new OrderItem();
-        orderItem.setProduct(product);
-        orderItem.setAmount(2);
+    void testToEntityWithValidOrder() {
         Order order = new Order();
-        order.setId(1);
-        order.setOrderItemsList(List.of(orderItem));
-        OrderItemEntity orderItemEntity = new OrderItemEntity();
-        orderItemEntity.setProduct(productEntity);
-        orderItemEntity.setAmount(2);
-        Mockito.when(orderItemMapper.toEntity(order)).thenReturn(List.of(orderItemEntity));
-        OrderEntity orderEntity = orderMapper.toEntity(order);
-        assertNotNull(orderEntity);
-        assertEquals(order.getId(), orderEntity.getId());
-        assertEquals(1, orderEntity.getOrderItemsList().size());
-        assertEquals(orderItem.getProduct().getName(), orderEntity.getOrderItemsList().get(0).getProduct().getName());
+        order.setId(100);
+        order.setTimeWaitingOrder(30);
+        order.setDateCreated(new Date());
+        order.setStatus(StatusOrder.WAITINGPAYMENT);
+        order.setTotalPrice(199.99);
+
+        List<OrderItem> orderItems = new ArrayList<>();
+        OrderItem item = new OrderItem();
+        item.setId(1L);
+        item.setPreparationTime("10");
+        item.setDescription("51 burger");
+        item.setTotalProductPrice(19.99);
+        item.setAmount(2);
+        orderItems.add(item);
+        order.setOrderItemsList(orderItems);
+
+        OrderEntity entity = OrderMapper.toEntity(order);
+
+        assertNotNull(entity);
+        assertEquals(order.getId(), entity.getId());
+        assertEquals(order.getTimeWaitingOrder(), entity.getTimeWaitingOrder());
+        assertEquals(order.getDateCreated(), entity.getDateCreated());
+        assertEquals(order.getStatus(), entity.getStatus());
+        assertEquals(order.getTotalPrice(), entity.getTotalPrice());
+        assertNotNull(entity.getOrderItemsList());
+        assertEquals(1, entity.getOrderItemsList().size());
+
+        OrderItemEntity itemEntity = entity.getOrderItemsList().getFirst();
+        assertEquals(item.getId(), itemEntity.getId());
+        assertEquals(item.getPreparationTime(), itemEntity.getPreparationTime());
+        assertEquals(item.getDescription(), itemEntity.getDescription());
+        assertEquals(item.getTotalProductPrice(), itemEntity.getTotalProductPrice());
+        assertEquals(item.getAmount(), itemEntity.getAmount());
     }
 
     @Test
-    public void testToDomain() {
-        ProductEntity productEntity = new ProductEntity();
-        productEntity.setName("Fries");
-        Product product = new Product();
-        product.setName("Burger");
-        OrderItemEntity orderItemEntity = new OrderItemEntity();
-        orderItemEntity.setProduct(productEntity);
-        orderItemEntity.setAmount(2);
-        OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setId(1);
-        orderEntity.setOrderItemsList(List.of(orderItemEntity));
+    void testToDomainWithValidOrderEntity() {
+        OrderEntity entity = new OrderEntity();
+        entity.setId(100);
+        entity.setTimeWaitingOrder(30);
+        entity.setDateCreated(new Date());
+        entity.setStatus(StatusOrder.WAITINGPAYMENT);
+        entity.setTotalPrice(199.99);
+        entity.setIdClient(1);
 
-        OrderItem orderItem = new OrderItem();
-        orderItem.setProduct(product);
-        orderItem.setAmount(2);
-        Mockito.when(orderItemMapper.toDomain(orderEntity)).thenReturn(List.of(orderItem));
-        Order order = orderMapper.toDomain(orderEntity);
-        assertNotNull(order);
-        assertEquals(orderEntity.getId(), order.getId());
-        assertEquals(1, order.getOrderItemsList().size());
-        assertEquals(orderItem.getProduct().getName(), order.getOrderItemsList().get(0).getProduct().getName());
+        List<OrderItemEntity> orderItems = new ArrayList<>();
+        OrderItemEntity itemEntity = new OrderItemEntity();
+        itemEntity.setId(1L);
+        itemEntity.setPreparationTime("10");
+        itemEntity.setDescription("51 burger");
+        itemEntity.setTotalProductPrice(19.99);
+        itemEntity.setAmount(2);
+        orderItems.add(itemEntity);
+        entity.setOrderItemsList(orderItems);
+
+        Order domain = OrderMapper.toDomain(entity);
+
+        assertNotNull(domain);
+        assertEquals(entity.getId(), domain.getId());
+        assertEquals(entity.getTimeWaitingOrder(), domain.getTimeWaitingOrder());
+        assertEquals(entity.getDateCreated(), domain.getDateCreated());
+        assertEquals(entity.getStatus(), domain.getStatus());
+        assertEquals(entity.getTotalPrice(), domain.getTotalPrice());
+        assertNotNull(domain.getOrderItemsList());
+        assertEquals(1, domain.getOrderItemsList().size());
+
+        OrderItem item = domain.getOrderItemsList().getFirst();
+        assertEquals(itemEntity.getId(), item.getId());
+        assertEquals(itemEntity.getPreparationTime(), item.getPreparationTime());
+        assertEquals(itemEntity.getDescription(), item.getDescription());
+        assertEquals(itemEntity.getTotalProductPrice(), item.getTotalProductPrice());
+        assertEquals(itemEntity.getAmount(), item.getAmount());
+    }
+
+    @Test
+    void testToDomainListWithValidOrderEntities() {
+        List<OrderEntity> entities = new ArrayList<>();
+        OrderEntity entity = new OrderEntity();
+        entity.setId(100);
+        entity.setTimeWaitingOrder(30);
+        entity.setDateCreated(new Date());
+        entity.setStatus(StatusOrder.WAITINGPAYMENT);
+        entity.setTotalPrice(199.99);
+        entity.setIdClient(1);
+
+        List<OrderItemEntity> orderItems = new ArrayList<>();
+        OrderItemEntity itemEntity = new OrderItemEntity();
+        itemEntity.setId(1L);
+        itemEntity.setPreparationTime("10");
+        itemEntity.setDescription("51 burger");
+        itemEntity.setTotalProductPrice(19.99);
+        itemEntity.setAmount(2);
+        orderItems.add(itemEntity);
+        entity.setOrderItemsList(orderItems);
+
+        entities.add(entity);
+
+        List<Order> domains = OrderMapper.toDomain(entities);
+
+        assertNotNull(domains);
+        assertEquals(1, domains.size());
+        assertEquals(entity.getId(), domains.getFirst().getId());
+    }
+
+
+    @Test
+    void testToEntityWithNullOrder() {
+        OrderEntity entity = OrderMapper.toEntity(null);
+        assertNull(entity, "O objeto convertido deveria ser null.");
+    }
+
+    @Test void testToDomainWithNullOrderEntity() {
+        Order domain = OrderMapper.toDomain((OrderEntity) null);
+        assertNull(domain, "O objeto convertido deveria ser null.");
+}
+
+    @Test
+    void testToDomainListWithNullOrderEntities() {
+        List<Order> domains = OrderMapper.toDomain((List<OrderEntity>) null);
+        assertNull(domains, "A lista convertida deveria ser null.");
     }
 }

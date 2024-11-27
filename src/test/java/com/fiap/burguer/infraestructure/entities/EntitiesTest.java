@@ -1,9 +1,13 @@
 package com.fiap.burguer.infraestructure.entities;
 
+import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.domain.OrderItem;
 import com.fiap.burguer.infraestructure.mappers.OrderItemMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,27 +47,29 @@ class EntitiesTest {
 
     @Test
     void testAllArgsConstructor() {
-        OrderEntity order = new OrderEntity();
-        ProductEntity product = new ProductEntity();
-        Double price = 10.50;
-        String preparationTime = "15 minutes";
-        String description = "Cheese burger";
-        Integer amount = 3;
-        OrderItemEntity entity = new OrderItemEntity();
-        entity.setOrder(order);
-        entity.setProduct(product);
-        entity.setTotalProductPrice(price);
-        entity.setPreparationTime(preparationTime);
-        entity.setDescription(description);
-        entity.setAmount(amount);
-        assertEquals(order, entity.getOrder());
-        assertEquals(product, entity.getProduct());
-        assertEquals(price, entity.getTotalProductPrice());
-        assertEquals(preparationTime, entity.getPreparationTime());
-        assertEquals(description, entity.getDescription());
-        assertEquals(amount, entity.getAmount());
-    }
+        Date dateCreated = new Date();
+        StatusOrder statusOrder = StatusOrder.WAITINGPAYMENT;
+        OrderItemEntity orderItemEntity = new OrderItemEntity();
 
+        OrderEntity orderEntity = new OrderEntity(
+                1,
+                30,
+                dateCreated,
+                statusOrder,
+                150.0,
+                List.of(orderItemEntity),
+                123
+        );
+
+        assertNotNull(orderEntity);
+        assertEquals(1, orderEntity.getId());
+        assertEquals(30, orderEntity.getTimeWaitingOrder());
+        assertEquals(dateCreated, orderEntity.getDateCreated());
+        assertEquals(statusOrder, orderEntity.getStatus());
+        assertEquals(150.0, orderEntity.getTotalPrice());
+        assertEquals(1, orderEntity.getOrderItemsList().size());
+        assertEquals(123, orderEntity.getIdClient());
+    }
     @Test
     void testToStringMethod() {
         OrderEntity order = new OrderEntity();
@@ -163,12 +169,9 @@ class EntitiesTest {
         OrderItem orderItemDomain = OrderItemMapper.toDomain(order, orderItemEntity);
 
         assertEquals(order.getId(), orderItemDomain.getOrder().getId());
-       // assertEquals(product.getId(), orderItemDomain.getProduct().getId());
         assertEquals(price, orderItemDomain.getTotalProductPrice());
         assertEquals(preparationTime, orderItemDomain.getPreparationTime());
         assertEquals(description, orderItemDomain.getDescription());
         assertEquals(amount, orderItemDomain.getAmount());
     }
-
-
 }
