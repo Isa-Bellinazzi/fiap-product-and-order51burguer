@@ -58,7 +58,7 @@ public class StepDefinition {
 
     @E("o sistema deve retornar os dados do pedido")
     public void oSistemaDeveRetornarOsDadosDoPedido() {
-        response.then().assertThat().body(matchesJsonSchemaInClasspath("orderResponse.json"));
+        response.then().assertThat().
     }
 
     @Dado("que o usuário está na página de login")
