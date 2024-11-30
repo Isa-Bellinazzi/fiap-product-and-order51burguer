@@ -8,10 +8,8 @@ import com.fiap.burguer.core.domain.Order;
 import com.fiap.burguer.core.domain.OrderItem;
 import com.fiap.burguer.core.domain.Product;
 import com.fiap.burguer.driver.dto.OrderRequest;
-import com.fiap.burguer.driver.dto.OrderRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import java.util.List;

@@ -7,12 +7,10 @@ import com.fiap.burguer.core.domain.Order;
 import com.fiap.burguer.core.domain.OrderItem;
 import com.fiap.burguer.core.domain.Product;
 import com.fiap.burguer.driver.dto.OrderRequest;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
 public class CreateOrderUseCase {
     private final OrderPort orderPort;
@@ -74,7 +72,8 @@ public class CreateOrderUseCase {
 
 
             return orderItem;
-        }).collect(Collectors.toList());
+        }).toList();
+
     }
 
 }

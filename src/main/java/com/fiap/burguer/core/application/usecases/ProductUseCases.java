@@ -1,7 +1,7 @@
 package com.fiap.burguer.core.application.usecases;
 
-import com.fiap.burguer.core.application.Exception.RequestException;
-import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
+import com.fiap.burguer.core.application.exception.RequestException;
+import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.ports.AuthenticationPort;
 import com.fiap.burguer.driver.dto.ProductCreate;
 import com.fiap.burguer.core.application.enums.CategoryProduct;
@@ -9,7 +9,6 @@ import com.fiap.burguer.core.application.ports.ProductPort;
 import com.fiap.burguer.core.domain.Product;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductUseCases {
     private final ProductPort productPort;
@@ -75,7 +74,7 @@ public class ProductUseCases {
 
         List<Product> filteredProductEntities = allProductEntities.stream()
                 .filter(product -> product.getCategory() ==  category)
-                .collect(Collectors.toList());
+                .toList();
 
         if (filteredProductEntities == null || filteredProductEntities.isEmpty()) {
            throw new ResourceNotFoundException("Nenhum produto encontrado para a categoria " + category);

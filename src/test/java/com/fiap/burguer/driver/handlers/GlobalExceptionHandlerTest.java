@@ -1,17 +1,7 @@
 package com.fiap.burguer.driver.handlers;
-
 import com.fiap.burguer.IntegrationTest;
-import com.fiap.burguer.core.application.Exception.RequestUnauthorized;
-import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
-import com.fiap.burguer.core.application.enums.CategoryProduct;
-import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.usecases.*;
-import com.fiap.burguer.core.domain.Order;
-import com.fiap.burguer.driver.controller.OrderController;
 import com.fiap.burguer.driver.controller.ProductController;
-import com.fiap.burguer.driver.dto.ErrorResponse;
-import com.fiap.burguer.driver.dto.OrderRequest;
-import com.fiap.burguer.driver.dto.OrderResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -19,23 +9,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import java.util.List;
-
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class GlobalExceptionHandlerTest extends IntegrationTest {
+ class GlobalExceptionHandlerTest extends IntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;

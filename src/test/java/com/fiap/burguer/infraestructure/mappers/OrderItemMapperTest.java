@@ -1,6 +1,4 @@
 package com.fiap.burguer.infraestructure.mappers;
-
-import com.fiap.burguer.core.domain.Product;
 import com.fiap.burguer.infraestructure.entities.OrderEntity;
 import com.fiap.burguer.infraestructure.entities.OrderItemEntity;
 import com.fiap.burguer.core.domain.Order;
@@ -150,27 +148,28 @@ class OrderItemMapperTest {
     @Test
     void testToEntityListWithNullOrderItems() {
         List<OrderItemEntity> entities = OrderItemMapper.toEntity((List<OrderItem>) null);
-        assertNull(entities, "A lista convertida deveria ser null.");
+        assertTrue(entities.isEmpty());
+
     }
 
 
     @Test
     void testToDomainListWithNullOrderItemEntities() {
         List<OrderItem> domains = OrderItemMapper.toDomain((List<OrderItemEntity>) null);
-        assertNull(domains, "A lista convertida deveria ser null.");
+        assertTrue(domains.isEmpty());
     }
 
     @Test
     void testToDomainList_NullInput() {
         List<OrderItem> orderItems = OrderItemMapper.toDomain((List<OrderItemEntity>) null);
-        assertNull(orderItems);
+        assertTrue(orderItems.isEmpty());
     }
-
 
     @Test
     void testToEntityList_NullInput() {
         List<OrderItemEntity> orderItemEntities = OrderItemMapper.toEntity((List<OrderItem>) null);
-        assertNull(orderItemEntities);
+        assertTrue(orderItemEntities.isEmpty());
+
     }
 
     @Test
@@ -188,13 +187,14 @@ class OrderItemMapperTest {
     @Test
     void testToDomainOrderItemsFromOrder_NullInput() {
         List<OrderItem> orderItems = OrderItemMapper.toDomain((OrderEntity) null);
-        assertNull(orderItems);
+        assertTrue(orderItems.isEmpty());
     }
 
     @Test
     void testToEntityOrderItemsFromOrder_NullInput() {
         List<OrderItemEntity> orderItemEntities = OrderItemMapper.toEntity((Order) null);
-        assertNull(orderItemEntities);
+        assertTrue(orderItemEntities.isEmpty());
+
     }
 
 }

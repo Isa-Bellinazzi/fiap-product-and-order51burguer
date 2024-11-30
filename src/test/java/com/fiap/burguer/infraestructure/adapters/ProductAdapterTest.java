@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
@@ -25,7 +24,6 @@ class ProductAdapterTest {
     @InjectMocks
     private ProductAdapter productAdapter;
 
-    private MockedStatic<ProductMapper> mockedMapper;
 
 
     @BeforeEach
@@ -45,7 +43,6 @@ class ProductAdapterTest {
         assertNotNull(result);
         verify(productRepository, times(1)).save(productEntity);
         verifyNoMoreInteractions(productRepository);
-        verify(ProductMapper.class, times(1));
         ProductMapper.toEntity(product);
         ProductMapper.toDomain(savedEntity);
     }
@@ -74,7 +71,6 @@ class ProductAdapterTest {
         List<Product> result = productAdapter.findAll();
         assertEquals(products.size(), result.size());
         verify(productRepository, times(1)).findAll();
-        verify(ProductMapper.class, times(1));
         ProductMapper.toDomain(entities);
     }
 

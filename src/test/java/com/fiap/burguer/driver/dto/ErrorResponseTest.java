@@ -2,10 +2,10 @@ package com.fiap.burguer.driver.dto;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ErrorResponseTest {
+ class ErrorResponseTest {
 
     @Test
-    public void testConstructorAndGetters() {
+     void testConstructorAndGetters() {
         int status = 404;
         String message = "Not Found";
         long timestamp = System.currentTimeMillis();
@@ -16,7 +16,7 @@ public class ErrorResponseTest {
     }
 
     @Test
-    public void testSetters() {
+     void testSetters() {
         ErrorResponse errorResponse = new ErrorResponse(0, "", 0);
         int status = 500;
         String message = "Internal Server Error";
@@ -30,7 +30,7 @@ public class ErrorResponseTest {
     }
 
     @Test
-    public void testErrorResponseDefaultConstructor() {
+     void testErrorResponseDefaultConstructor() {
         ErrorResponse errorResponse = new ErrorResponse(0, "", 0);
         assertEquals(0, errorResponse.getStatus());
         assertEquals("", errorResponse.getMessage());

@@ -5,18 +5,18 @@ import com.fiap.burguer.infraestructure.mappers.ProductMapper;
 import com.fiap.burguer.infraestructure.repository.ProductRepository;
 import com.fiap.burguer.core.application.ports.ProductPort;
 import com.fiap.burguer.core.domain.Product;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
-@AllArgsConstructor
 public class ProductAdapter implements ProductPort {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    // Construtor para injeção das dependências
+    public ProductAdapter(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public Product save(Product product) {

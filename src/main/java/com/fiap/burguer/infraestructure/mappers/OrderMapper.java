@@ -6,12 +6,14 @@ import com.fiap.burguer.core.domain.Order;
 import com.fiap.burguer.core.domain.OrderItem;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class OrderMapper {
+
+    private  OrderMapper(){
+
+    }
 
     public static OrderEntity toEntity(Order order) {
         if(order == null) return null;
@@ -37,9 +39,10 @@ public class OrderMapper {
     }
 
     public static List<Order> toDomain(List<OrderEntity> orderEntities) {
-        if(orderEntities == null) return null;
+        if(orderEntities == null) return List.of();
         return orderEntities.stream()
                 .map(OrderMapper::toDomain)
-                .collect(Collectors.toList());
+                .toList();
+
     }
 }

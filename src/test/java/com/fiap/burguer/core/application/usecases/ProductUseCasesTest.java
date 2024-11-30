@@ -1,7 +1,7 @@
 package com.fiap.burguer.core.application.usecases;
 
-import com.fiap.burguer.core.application.Exception.RequestException;
-import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
+import com.fiap.burguer.core.application.exception.RequestException;
+import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.enums.CategoryProduct;
 import com.fiap.burguer.core.application.ports.AuthenticationPort;
 import com.fiap.burguer.core.application.ports.ProductPort;
@@ -10,7 +10,6 @@ import com.fiap.burguer.driver.dto.ProductCreate;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 

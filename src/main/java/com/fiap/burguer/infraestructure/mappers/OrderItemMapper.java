@@ -6,12 +6,12 @@ import com.fiap.burguer.core.domain.Order;
 import com.fiap.burguer.core.domain.OrderItem;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class OrderItemMapper {
+
+    private  OrderItemMapper(){}
 
     public static OrderItemEntity toEntity(OrderItem orderItem) {
         if(orderItem == null) return null;
@@ -32,17 +32,19 @@ public class OrderItemMapper {
     }
 
     public static List<OrderItem> toDomain(List<OrderItemEntity> orderItemEntities) {
-        if(orderItemEntities == null) return null;
+        if(orderItemEntities == null) return List.of();
         return orderItemEntities.stream()
                 .map(OrderItemMapper::toDomain)
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
     public static List<OrderItemEntity> toEntity(List<OrderItem> orderItems) {
-        if(orderItems == null) return null;
+        if(orderItems == null) return List.of();
         return orderItems.stream()
                 .map(OrderItemMapper::toEntity)
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
 
@@ -70,17 +72,19 @@ public class OrderItemMapper {
     }
 
     public static List<OrderItem> toDomain(OrderEntity orderEntity) {
-        if(orderEntity == null) return null;
+        if(orderEntity == null) return List.of();
         return orderEntity.getOrderItemsList().stream()
                 .map(orderItemEnity -> OrderItemMapper.toDomain(orderEntity, orderItemEnity))
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
     public static List<OrderItemEntity> toEntity(Order order) {
-        if(order == null) return null;
+        if(order == null) return List.of();
         return order.getOrderItemsList().stream()
                 .map(orderItem -> OrderItemMapper.toEntity(order, orderItem))
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
 }
