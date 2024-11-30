@@ -46,6 +46,8 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
     @Mock
     private ProductUseCases productUseCases;
 
+    String authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzQxOTM1MTgsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.2mOK0LBKuy2lAXFrEuoUQxTvHzXq8ypDS8vnW-b3sD8";
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -74,7 +76,6 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
     @Test
     void testHandleResourceNotFoundException() throws Exception {
         String errorMessage = "Produto não encontrado";
-        String authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzQxOTM1MTgsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.2mOK0LBKuy2lAXFrEuoUQxTvHzXq8ypDS8vnW-b3sD8";
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/products/999999999").header("Authorization",authorization)
 
@@ -89,7 +90,6 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
     @Test
     void testHandleResourceBadRequestException() throws Exception {
         String errorMessage = "Id do Produto inválido";
-        String authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzQxOTM1MTgsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.2mOK0LBKuy2lAXFrEuoUQxTvHzXq8ypDS8vnW-b3sD8";
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/products/0").header("Authorization",authorization)
 

@@ -27,7 +27,7 @@ public class GetAllOrdersUseCase {
     }
 
 
-    private int getStatusPriority(StatusOrder status) {
+    protected int getStatusPriority(StatusOrder status) {
         return switch (status) {
             case READY -> 1;
             case PREPARATION -> 2;
