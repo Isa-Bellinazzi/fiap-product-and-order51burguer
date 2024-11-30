@@ -25,7 +25,7 @@ public class OrderController implements OrderApi {
         this.getOrderByIdUseCase = getOrderById;
     }
 
-    public ResponseEntity<?> createOrder (OrderRequest orderRequest, String authorizationHeader) {
+    public ResponseEntity<OrderResponse> createOrder (OrderRequest orderRequest, String authorizationHeader) {
 
         Order order = createOrderUseCase.createOrder(orderRequest, authorizationHeader);
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);
@@ -60,7 +60,7 @@ public class OrderController implements OrderApi {
     }
 
 
-    public ResponseEntity<?> updateOrderStatus(int id, StatusOrder newStatus, String authorizationHeader) {
+    public ResponseEntity<OrderResponse> updateOrderStatus(int id, StatusOrder newStatus, String authorizationHeader) {
 
         Order order = getOrderByIdUseCase.getOrderById(id, authorizationHeader);
 
