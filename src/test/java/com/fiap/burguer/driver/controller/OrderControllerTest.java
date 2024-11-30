@@ -5,7 +5,6 @@ import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.usecases.*;
 import com.fiap.burguer.core.domain.Order;
 import com.fiap.burguer.driver.dto.OrderRequest;
-import com.fiap.burguer.driver.dto.OrderResponse;
 import com.fiap.burguer.driver.handlers.GlobalExceptionHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,16 +39,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
     private OrderRequest orderRequest;
     private Order order;
-    private OrderResponse orderResponse;
 
-    @BeforeEach
+     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
         orderRequest = new OrderRequest();
         order = getOrderMock();
 
-        orderResponse = new OrderResponse();
-        orderController = new OrderController( createOrderUseCase, getAllOrdersUseCase, ordersStatusUseCase, getOrderByIdUseCase);
+
+         orderController = new OrderController( createOrderUseCase, getAllOrdersUseCase, ordersStatusUseCase, getOrderByIdUseCase);
         mvc = MockMvcBuilders.standaloneSetup(orderController)
                 .setControllerAdvice(new GlobalExceptionHandler())
                 .addFilter((request, response, chain) -> {

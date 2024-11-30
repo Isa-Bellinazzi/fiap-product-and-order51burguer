@@ -1,7 +1,5 @@
 package com.fiap.burguer.infraestructure.adapters;
-
 import com.fiap.burguer.core.application.exception.RequestUnauthorized;
-import com.fiap.burguer.core.application.utils.JwtUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

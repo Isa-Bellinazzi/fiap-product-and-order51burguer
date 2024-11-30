@@ -82,7 +82,7 @@ public interface ProductApi {
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Produto não encontrado",
                     content = @Content)})
-    public @ResponseBody ResponseEntity deleteProduct(
+    public @ResponseBody ResponseEntity<Void> deleteProduct(
             @Parameter(description = "ID do produto a ser deletado", required = true) @PathVariable("id") int id,
             @RequestHeader(value = "Authorization", required = false) String authorizationHeader);
 }

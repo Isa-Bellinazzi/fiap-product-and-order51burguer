@@ -1,21 +1,22 @@
 package com.fiap.burguer.config;
 import com.fiap.burguer.core.application.usecases.*;
 import com.fiap.burguer.infraestructure.adapters.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Config {
 
-    @Autowired
-    ProductAdapter productAdapter;
+    private final ProductAdapter productAdapter;
+    private final OrderAdapter orderAdapter;
+    private final AuthenticationAdapter authenticationAdapter;
 
-    @Autowired
-    OrderAdapter orderAdapter;
+    public Config(ProductAdapter productAdapter, OrderAdapter orderAdapter, AuthenticationAdapter authenticationAdapter) {
+        this.productAdapter = productAdapter;
+        this.orderAdapter = orderAdapter;
+        this.authenticationAdapter = authenticationAdapter;
+    }
 
-    @Autowired
-    AuthenticationAdapter authenticationAdapter;
 
     @Bean
     public ProductUseCases getProductService() {

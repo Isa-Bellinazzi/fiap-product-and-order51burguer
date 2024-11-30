@@ -346,15 +346,14 @@ import java.util.Collections;
         assertFalse(result);
     }
 
-    @Test
-    void testIsValidStatusUpdateInvalidReceivedFromNonApprovedPayment() {
-        StatusOrder currentStatus = StatusOrder.WAITINGPAYMENT;
-        StatusOrder newStatus = StatusOrder.RECEIVED;
+     @Test
+     void shouldReturnFalseWhenStatusUpdateIsInvalidFromNonApprovedPaymentToReceived() {
+         StatusOrder currentStatus = StatusOrder.WAITINGPAYMENT;
+         StatusOrder newStatus = StatusOrder.RECEIVED;
+         boolean result = ordersStatusUseCase.isValidStatusUpdate(currentStatus, newStatus);
+         assertFalse(result, "A transição de status de 'WAITINGPAYMENT' para 'RECEIVED' não deve ser válida.");
+     }
 
-        boolean result = ordersStatusUseCase.isValidStatusUpdate(currentStatus, newStatus);
-
-        assertFalse(result);
-    }
 
     @Test
     void shouldReturnFalseWhenUpdatingToReceivedWithInvalidCurrentStatus() {
@@ -364,7 +363,6 @@ import java.util.Collections;
         Order order = new Order();
         order.setStatus(currentStatus);
 
-        String authorizationHeader = "validHeader";
         assertFalse(
             ordersStatusUseCase.isValidStatusUpdate(currentStatus, newStatus ));
 
