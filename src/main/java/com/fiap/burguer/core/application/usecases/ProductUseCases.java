@@ -9,7 +9,6 @@ import com.fiap.burguer.core.application.ports.ProductPort;
 import com.fiap.burguer.core.domain.Product;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductUseCases {
     private final ProductPort productPort;
