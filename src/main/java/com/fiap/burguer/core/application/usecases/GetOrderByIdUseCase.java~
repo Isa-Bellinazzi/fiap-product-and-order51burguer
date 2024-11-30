@@ -15,7 +15,8 @@ public class GetOrderByIdUseCase {
         this.authenticationPort = authenticationPort;
     }
 
-    public Order getOrderById(int id) {
+    public Order getOrderById(int id, String authorizationHeader) {
+        authenticationPort.validateAuthorizationHeader(authorizationHeader);
         if(id < 1 ) throw new RequestException("Id do Pedido inválido");
         Order order = orderPort.findById(id);
         if (order == null) {

@@ -36,7 +36,7 @@ public interface OrderApi {
                                          @RequestHeader(value = "Authorization", required = false) String authorizationHeader);
 
     @GetMapping
-    @Operation(summary = "Consulta todos os pedidos em preparação")
+    @Operation(summary = "Consulta todos os pedidos")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Encontrou pedidos",
                     content = {@Content(mediaType = "application/json",

@@ -16,8 +16,8 @@ public class TimeWaitingOrderQueueUseCase {
 
     public int execute(String authorizationHeader) {
         try {
-            List<Order> receivedOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED, authorizationHeader);
-            List<Order> preparationOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader);
+            List<Order> receivedOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED);
+            List<Order> preparationOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION);
 
             return sumTimeWaitingOrder(receivedOrderEntities) + sumTimeWaitingOrder(preparationOrderEntities);
         } catch (ResourceNotFoundException ex) {

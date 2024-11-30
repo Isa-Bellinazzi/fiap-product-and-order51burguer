@@ -52,8 +52,8 @@ public class OrderController implements OrderApi {
         return ResponseEntity.ok(responses);
     }
 
-    public  ResponseEntity<OrderResponse> getOrderById(int id) {
-        Order order = getOrderByIdUseCase.getOrderById(id);
+    public  ResponseEntity<OrderResponse> getOrderById(int id, String authorizationHeader) {
+        Order order = getOrderByIdUseCase.getOrderById(id, authorizationHeader);
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -61,7 +61,7 @@ public class OrderController implements OrderApi {
 
     public ResponseEntity<?> updateOrderStatus(int id, StatusOrder newStatus, String authorizationHeader) {
 
-        Order order = getOrderByIdUseCase.getOrderById(id);
+        Order order = getOrderByIdUseCase.getOrderById(id, authorizationHeader);
 
         ordersByStatusUseCase.updateOrderStatus(order, newStatus, authorizationHeader);
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);

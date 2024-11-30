@@ -1,13 +1,11 @@
-package com.fiap.burguer.bdd;
-
-import org.junit.jupiter.api.parallel.Resources;
-import org.junit.platform.suite.api.IncludeEngines;
-import org.junit.platform.suite.api.SelectClasspathResource;
-import org.junit.platform.suite.api.Suite;
-
-@Suite
-@IncludeEngines("cucumber")
-@SelectClasspathResource("features")
-public class CucumberTest {
-
-}
+//package com.fiap.burguer.bdd;
+//
+//import io.cucumber.junit.Cucumber;
+//import io.cucumber.junit.CucumberOptions;
+//import org.junit.runner.RunWith;
+//
+//@RunWith(Cucumber.class)
+//@CucumberOptions(features = "src/test/resources/features/")
+//public class CucumberTest {
+//
+//}

@@ -83,7 +83,7 @@ public class OrderControllerTest extends IntegrationTest {
     @Test
     public void testGetAllOrders() throws Exception {
         List<Order> orders = Arrays.asList(order);
-        when(getAllOrdersUseCase.getAllOrders(any())).thenReturn(orders);
+        when(getAllOrdersUseCase.getAllOrders()).thenReturn(orders);
         mvc.perform(get("/orders").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -91,21 +91,21 @@ public class OrderControllerTest extends IntegrationTest {
     @Test
     public void testGetOrdersByStatus() throws Exception {
         List<Order> orders = Arrays.asList(order);
-        when(ordersStatusUseCase.getOrdersByStatus(any(), any())).thenReturn(orders);
+        when(ordersStatusUseCase.getOrdersByStatus(any())).thenReturn(orders);
         mvc.perform(get("/orders/status/"+StatusOrder.READY).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void testGetOrderById() throws Exception {
-        when(getOrderByIdUseCase.getOrderById(1, "authorizationHeader")).thenReturn(order);
+        when(getOrderByIdUseCase.getOrderById(1)).thenReturn(order);
         mvc.perform(get("/orders/"+1).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void testUpdateOrderStatus() throws Exception {
-        when(getOrderByIdUseCase.getOrderById(1, "authorizationHeader")).thenReturn(this.order);
+        when(getOrderByIdUseCase.getOrderById(1)).thenReturn(this.order);
 
         mvc.perform(put("/orders/"+1+"/status")
                         .param("newStatus", String.valueOf(StatusOrder.READY))

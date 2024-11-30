@@ -3,20 +3,20 @@
   Funcionalidade: Pedido
 
     Cenario: Criar Pedido
-      Dado que o usuário preencha os itens do pedido
+      Dado que exista um produto cadastrado
       Quando o usuário submeter o pedido para criacao
       Entao o sistema deve salvar o pedido
       E o sistema deve retornar os dados do pedido
 
-    Cenario: Listar Pedidos
-      Dado que existe um pedido na base de dados
+    Cenario: Listar Pedidos em preparação
+      Dado que existe um pedido na base de dados em preparação
       Quando o cliente consultar os pedidos
-      Entao o sistema deve retornar o pedido
+      Entao o sistema deve retornar todos os pedidos em preparação
 
-    Cenario: Listar pedido por status
+    Cenario: Listar pedidos por status
       Dado que existe um pedido na base de dados com status WAITINGPAYMENT
       Quando o cliente consultar os pedidos pelo status WAITINGPAYMENT
-      Entao o sistema deve retornar o pedido
+      Entao o sistema deve retornar os pedidos com status WAITINGPAYMENT
 
     Cenario: Listar pedido por Id
       Dado que existe um pedido na base de dados
@@ -25,19 +25,12 @@
 
     Cenario: update de status do pedido de APPROVEDPAYMENT para RECEIVED
       Dado que existe um pedido na base de dados com status APPROVEDPAYMENT
-      Quando o cliente passar o id e o status RECEIVED do pedido para a API de udate status
+      Quando o cliente passar o id e o status RECEIVED do pedido para a API de update status
       Entao o sistema deve realizar o update
       E o sistema deve retornar o pedido com o status trocado
 
     Cenario: update de status do pedido de REJECTEDPAYMENT para RECEIVED
       Dado que existe um pedido na base de dados com status REJECTEDPAYMENT
-      Quando o cliente passar o id e o status RECEIVED do pedido para a API de udate status
-      Entao o sistema não deve realizar o update
-      E o sistema deve retornar uma mensagem de erro
-
-
-    Cenario: update de status do pedido de APPROVEDPAYMENT para CANCELED
-      Dado que existe um pedido na base de dados com status APPROVEDPAYMENT
-      Quando o cliente passar o id e o status CANCELED do pedido para a API de udate status
+      Quando o cliente passar o id e o status RECEIVED do pedido para a API de update status
       Entao o sistema não deve realizar o update
       E o sistema deve retornar uma mensagem de erro

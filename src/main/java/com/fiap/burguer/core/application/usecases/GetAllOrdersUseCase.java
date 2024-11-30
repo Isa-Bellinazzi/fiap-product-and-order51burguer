@@ -14,8 +14,7 @@ public class GetAllOrdersUseCase {
         this.authenticationPort = authenticationPort;
     }
 
-    public List<Order> getAllOrders(String authorizationHeader) {
-        authenticationPort.validateAuthorizationHeader(authorizationHeader);
+    public List<Order> getAllOrders() {
 
         List<Order> orderEntities = orderPort.findAll();
 

@@ -60,8 +60,8 @@ public class OrdersStatusUseCase {
             case WAITINGPAYMENT ->
                     newStatus == StatusOrder.APPROVEDPAYMENT ||
                     newStatus == StatusOrder.REJECTEDPAYMENT ||
-                    newStatus == StatusOrder.CANCELED;
-            case APPROVEDPAYMENT -> newStatus == StatusOrder.RECEIVED;
+                    newStatus == StatusOrder.CANCELED ||
+                    newStatus == StatusOrder.RECEIVED;
             case RECEIVED -> newStatus == StatusOrder.PREPARATION;
             case PREPARATION -> newStatus == StatusOrder.READY;
             case READY -> newStatus == StatusOrder.FINISHED;
