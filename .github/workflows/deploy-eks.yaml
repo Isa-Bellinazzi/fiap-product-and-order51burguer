@@ -58,3 +58,4 @@ jobs:
           kubectl apply -f k8s/deployment-burguer-app.yaml
           kubectl apply -f k8s/service-burguer-app.yaml
           kubectl apply -f k8s/hpa-burguer-app.yaml
+          
