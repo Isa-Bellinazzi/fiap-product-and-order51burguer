@@ -6,10 +6,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OrderRequestTest {
+ class OrderRequestTest {
 
     @Test
-    public void testConstructorAndGetters() {
+     void testConstructorAndGetters() {
         int productId = 1;
         int quantity = 2;
         List<OrderRequest.OrderItemRequest> items = List.of(new OrderRequest.OrderItemRequest(productId, quantity));
@@ -23,7 +23,7 @@ public class OrderRequestTest {
     }
 
     @Test
-    public void testDefaultConstructorAndSetters() {
+     void testDefaultConstructorAndSetters() {
         OrderRequest orderRequest = new OrderRequest();
         int productId = 1;
         int quantity = 3;
@@ -39,7 +39,7 @@ public class OrderRequestTest {
     }
 
     @Test
-    public void testOrderItemRequestConstructorAndGetters() {
+     void testOrderItemRequestConstructorAndGetters() {
         int productId = 2;
         int quantity = 4;
         OrderRequest.OrderItemRequest orderItemRequest = new OrderRequest.OrderItemRequest(productId, quantity);
@@ -48,7 +48,7 @@ public class OrderRequestTest {
     }
 
     @Test
-    public void testOrderItemRequestSetters() {
+     void testOrderItemRequestSetters() {
         OrderRequest.OrderItemRequest orderItemRequest = new OrderRequest.OrderItemRequest(0, 0);
         int productId = 5;
         int quantity = 6;
@@ -59,7 +59,7 @@ public class OrderRequestTest {
     }
 
     @Test
-    public void testOrderItemRequestDefaultConstructor() {
+     void testOrderItemRequestDefaultConstructor() {
         OrderRequest.OrderItemRequest orderItemRequest = new OrderRequest.OrderItemRequest();
         assertEquals(0, orderItemRequest.getProductId());
         assertEquals(0, orderItemRequest.getQuantity());

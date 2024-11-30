@@ -1,7 +1,5 @@
 package com.fiap.burguer.api;
-
 import com.fiap.burguer.core.application.enums.CategoryProduct;
-import com.fiap.burguer.core.application.usecases.ProductUseCases;
 import com.fiap.burguer.core.domain.Product;
 import com.fiap.burguer.driver.dto.ProductCreate;
 import com.fiap.burguer.infraestructure.entities.ProductEntity;
@@ -12,8 +10,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,6 @@
 package com.fiap.burguer.core.application.usecases;
 
-import com.fiap.burguer.core.application.Exception.RequestException;
+import com.fiap.burguer.core.application.exception.RequestException;
 import com.fiap.burguer.driver.dto.OrderRequest;
 import org.junit.jupiter.api.Test;
 

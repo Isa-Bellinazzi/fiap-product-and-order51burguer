@@ -85,8 +85,6 @@ class EntitiesTest {
         entity.setPreparationTime(preparationTime);
         entity.setDescription(description);
         entity.setAmount(amount);
-        String expectedToString = "OrderItemEntity(id=null, order=" + order + ", product=" + product +
-                ", totalProductPrice=10.5, preparationTime=15 minutes, description=Cheese burger, amount=3)";
         assertTrue(entity.toString().contains("OrderItemEntity"));
         assertTrue(entity.toString().contains("totalProductPrice=10.5"));
         assertTrue(entity.toString().contains("amount=3"));

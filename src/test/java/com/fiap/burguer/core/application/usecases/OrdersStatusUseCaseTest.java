@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
-import com.fiap.burguer.core.application.Exception.RequestException;
-import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
+import com.fiap.burguer.core.application.exception.RequestException;
+import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.ports.AuthenticationPort;
 import com.fiap.burguer.core.application.ports.OrderPort;
 import com.fiap.burguer.core.domain.Order;
@@ -13,7 +13,7 @@ import com.fiap.burguer.core.application.enums.StatusOrder;
 import java.util.List;
 import java.util.Collections;
 
-public class OrdersStatusUseCaseTest{
+ class OrdersStatusUseCaseTest{
 
     @Mock
     private OrderPort orderPort;
@@ -23,7 +23,7 @@ public class OrdersStatusUseCaseTest{
 
     private OrdersStatusUseCase ordersStatusUseCase;
 
-    String authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzQxOTM1MTgsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.2mOK0LBKuy2lAXFrEuoUQxTvHzXq8ypDS8vnW-b3sD8";;
+    String authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzQxOTM1MTgsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.2mOK0LBKuy2lAXFrEuoUQxTvHzXq8ypDS8vnW-b3sD8";
 
     @BeforeEach
     void setUp() {

@@ -1,6 +1,4 @@
 package com.fiap.burguer.infraestructure.mappers;
-
-import com.fiap.burguer.core.domain.Product;
 import com.fiap.burguer.infraestructure.entities.OrderEntity;
 import com.fiap.burguer.infraestructure.entities.OrderItemEntity;
 import com.fiap.burguer.core.domain.Order;

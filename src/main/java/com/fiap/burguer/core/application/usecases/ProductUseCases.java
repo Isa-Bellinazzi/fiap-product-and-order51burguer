@@ -1,7 +1,7 @@
 package com.fiap.burguer.core.application.usecases;
 
-import com.fiap.burguer.core.application.Exception.RequestException;
-import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
+import com.fiap.burguer.core.application.exception.RequestException;
+import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.ports.AuthenticationPort;
 import com.fiap.burguer.driver.dto.ProductCreate;
 import com.fiap.burguer.core.application.enums.CategoryProduct;

@@ -1,8 +1,7 @@
 package com.fiap.burguer.core.application.usecases;
 
-import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
+import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.enums.StatusOrder;
-import com.fiap.burguer.core.application.ports.AuthenticationPort;
 import com.fiap.burguer.core.domain.Order;
 
 import java.util.List;

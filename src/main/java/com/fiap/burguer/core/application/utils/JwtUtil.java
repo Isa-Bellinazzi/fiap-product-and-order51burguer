@@ -2,8 +2,6 @@ package com.fiap.burguer.core.application.utils;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import java.util.Date;
-
 public class JwtUtil {
 
     public DecodedJWT decodeToken(String token) {

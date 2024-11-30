@@ -1,6 +1,5 @@
 //package com.fiap.burguer.infraestructure.mappers;
 //
-//import com.fiap.burguer.infraestructure.entities.ProductEntity;
 //import com.fiap.burguer.core.domain.Product;
 //import org.junit.jupiter.api.Test;
 //

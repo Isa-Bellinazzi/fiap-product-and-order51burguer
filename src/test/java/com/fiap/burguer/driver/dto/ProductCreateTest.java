@@ -1,13 +1,12 @@
 package com.fiap.burguer.driver.dto;
 import com.fiap.burguer.core.application.enums.CategoryProduct;
-import com.fiap.burguer.core.application.enums.CategoryProduct;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProductCreateTest {
+ class ProductCreateTest {
 
     @Test
-    public void testConstructorAndGetters() {
+     void testConstructorAndGetters() {
         String name = "Cheeseburger";
         String image = "cheeseburger.png";
         Integer preparationTime = 10;
@@ -24,7 +23,7 @@ public class ProductCreateTest {
     }
 
     @Test
-    public void testSetters() {
+     void testSetters() {
         ProductCreate productCreate = new ProductCreate(null, null, null, null, 0.0, null);
 
         String name = "Veggie Burger";
