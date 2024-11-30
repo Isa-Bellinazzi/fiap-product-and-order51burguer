@@ -38,7 +38,8 @@ public class OrderController implements OrderApi {
 
         List<OrderResponse> responses = orderEntities.stream()
                 .map(OrderPresenter::mapOrderToResponse)
-                .collect(Collectors.toList());
+                .toList();
+
         return ResponseEntity.ok(responses);
     }
 
@@ -48,7 +49,8 @@ public class OrderController implements OrderApi {
 
         List<OrderResponse> responses = orders.stream()
                 .map(OrderPresenter::mapOrderToResponse)
-                .collect(Collectors.toList());
+                .toList();
+
         return ResponseEntity.ok(responses);
     }
 

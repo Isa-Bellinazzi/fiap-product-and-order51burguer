@@ -42,7 +42,8 @@ public class OrderAdapter implements OrderPort {
 
         return orderEntityResponse.stream()
                 .map(orderEntity -> modelMapper.map(orderEntity, Order.class))
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
     @Override
@@ -51,7 +52,8 @@ public class OrderAdapter implements OrderPort {
 
         return orderEntityResponse.stream()
                 .map(orderEntity -> modelMapper.map(orderEntity, Order.class))
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
     @Override

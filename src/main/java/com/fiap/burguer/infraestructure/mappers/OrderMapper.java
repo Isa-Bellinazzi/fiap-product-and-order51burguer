@@ -40,6 +40,7 @@ public class OrderMapper {
         if(orderEntities == null) return null;
         return orderEntities.stream()
                 .map(OrderMapper::toDomain)
-                .collect(Collectors.toList());
+                .toList();
+
     }
 }

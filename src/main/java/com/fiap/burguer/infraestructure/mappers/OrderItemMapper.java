@@ -35,14 +35,16 @@ public class OrderItemMapper {
         if(orderItemEntities == null) return null;
         return orderItemEntities.stream()
                 .map(OrderItemMapper::toDomain)
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
     public static List<OrderItemEntity> toEntity(List<OrderItem> orderItems) {
         if(orderItems == null) return null;
         return orderItems.stream()
                 .map(OrderItemMapper::toEntity)
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
 
@@ -73,14 +75,16 @@ public class OrderItemMapper {
         if(orderEntity == null) return null;
         return orderEntity.getOrderItemsList().stream()
                 .map(orderItemEnity -> OrderItemMapper.toDomain(orderEntity, orderItemEnity))
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
     public static List<OrderItemEntity> toEntity(Order order) {
         if(order == null) return null;
         return order.getOrderItemsList().stream()
                 .map(orderItem -> OrderItemMapper.toEntity(order, orderItem))
-                .collect(Collectors.toList());
+                .toList();
+
     }
 
 }

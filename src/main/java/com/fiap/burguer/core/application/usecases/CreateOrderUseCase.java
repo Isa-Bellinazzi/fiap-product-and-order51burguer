@@ -74,7 +74,8 @@ public class CreateOrderUseCase {
 
 
             return orderItem;
-        }).collect(Collectors.toList());
+        }).toList();
+
     }
 
 }

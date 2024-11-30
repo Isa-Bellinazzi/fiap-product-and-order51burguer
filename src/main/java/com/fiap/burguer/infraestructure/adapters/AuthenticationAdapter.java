@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 public class AuthenticationAdapter implements AuthenticationPort {
     private final JwtUtil jwtUtil;
 
+    String bearerPrefix = "Bearer ";
+
     public AuthenticationAdapter() {
         this.jwtUtil = new JwtUtil();
     }
@@ -18,7 +20,6 @@ public class AuthenticationAdapter implements AuthenticationPort {
             throw new RequestUnauthorized("Token não fornecido ou inválido.");
         }
 
-        String bearerPrefix = "Bearer ";
         if (!authorizationHeader.regionMatches(true, 0, bearerPrefix, 0, bearerPrefix.length())) {
             throw new RequestUnauthorized("Tipo de token inválido. Esperado Bearer.");
         }
@@ -41,7 +42,6 @@ public class AuthenticationAdapter implements AuthenticationPort {
 
     @Override
     public void validateIsAdminAccess(String authorizationHeader) {
-        String bearerPrefix = "Bearer ";
         String token = authorizationHeader.substring(bearerPrefix.length()).trim();
 
         if (!jwtUtil.isAdminFromToken(token)) {
@@ -51,7 +51,6 @@ public class AuthenticationAdapter implements AuthenticationPort {
 
     @Override
     public Integer validateIdUser(String authorizationHeader) {
-        String bearerPrefix = "Bearer ";
         String token = authorizationHeader.substring(bearerPrefix.length()).trim();
         return jwtUtil.getIdFromToken(token);
     }

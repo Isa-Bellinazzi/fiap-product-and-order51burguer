@@ -75,7 +75,7 @@ public class ProductUseCases {
 
         List<Product> filteredProductEntities = allProductEntities.stream()
                 .filter(product -> product.getCategory() ==  category)
-                .collect(Collectors.toList());
+                .toList();
 
         if (filteredProductEntities == null || filteredProductEntities.isEmpty()) {
            throw new ResourceNotFoundException("Nenhum produto encontrado para a categoria " + category);

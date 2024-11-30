@@ -28,6 +28,7 @@ public class ProductMapper {
         if(productEntities == null) return null;
         return productEntities.stream()
                 .map(ProductMapper::toDomain)
-                .collect(Collectors.toList());
+                .toList();
+
     }
 }
