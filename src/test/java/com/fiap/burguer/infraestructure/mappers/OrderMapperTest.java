@@ -137,6 +137,6 @@ class OrderMapperTest {
     @Test
     void testToDomainListWithNullOrderEntities() {
         List<Order> domains = OrderMapper.toDomain((List<OrderEntity>) null);
-        assertNull(domains, "A lista convertida deveria ser null.");
+        assertTrue(domains.isEmpty());
     }
 }
