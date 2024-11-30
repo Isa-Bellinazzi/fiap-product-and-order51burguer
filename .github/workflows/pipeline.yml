@@ -87,4 +87,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_51BURGUER }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=fiapteam51_51burguer
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar

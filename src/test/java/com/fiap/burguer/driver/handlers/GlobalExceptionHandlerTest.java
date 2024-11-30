@@ -1,9 +1,17 @@
 package com.fiap.burguer.driver.handlers;
 
 import com.fiap.burguer.IntegrationTest;
-import com.fiap.burguer.core.application.Exception.ResourceNotAcceptableException;
+import com.fiap.burguer.core.application.Exception.RequestUnauthorized;
+import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
+import com.fiap.burguer.core.application.enums.CategoryProduct;
+import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.usecases.*;
+import com.fiap.burguer.core.domain.Order;
+import com.fiap.burguer.driver.controller.OrderController;
 import com.fiap.burguer.driver.controller.ProductController;
+import com.fiap.burguer.driver.dto.ErrorResponse;
+import com.fiap.burguer.driver.dto.OrderRequest;
+import com.fiap.burguer.driver.dto.OrderResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -11,13 +19,18 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,7 +47,6 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
     private ProductUseCases productUseCases;
 
     String authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzQxOTM1MTgsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.2mOK0LBKuy2lAXFrEuoUQxTvHzXq8ypDS8vnW-b3sD8";
-
 
     @BeforeEach
     void setUp() {
@@ -56,8 +68,8 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
     void testHandleUnauthorizedException() throws Exception {
         String errorMessage = "Token não fornecido ou inválido.";
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/products/0")
-                ).andExpect(status().isUnauthorized()).andExpect(jsonPath("$.status").value(HttpStatus.UNAUTHORIZED.value())).andExpect((jsonPath("$.message").value(errorMessage)));
+                        .get("/products/0") // O endpoint onde a exceção é esperada
+                ).andExpect(MockMvcResultMatchers.status().isUnauthorized()).andExpect(jsonPath("$.status").value(HttpStatus.UNAUTHORIZED.value())).andExpect((jsonPath("$.message").value(errorMessage)));
 
     }
 
@@ -68,7 +80,7 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
                         .get("/products/999999999").header("Authorization",authorization)
 
                 )
-                .andExpect(status().isNotFound())
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andExpect(jsonPath("$.status").value(HttpStatus.NOT_FOUND.value()))
                 .andExpect(jsonPath("$.message").value(errorMessage))
                 .andExpect(jsonPath("$.timestamp").exists());
@@ -82,7 +94,7 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
                         .get("/products/0").header("Authorization",authorization)
 
                 )
-                .andExpect(status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(jsonPath("$.message").value(errorMessage))
                 .andExpect(jsonPath("$.timestamp").exists());
@@ -96,10 +108,9 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/unknown-endpoint")
                 )
-                .andExpect(status().isInternalServerError())
+                .andExpect(MockMvcResultMatchers.status().isInternalServerError())
                 .andExpect(jsonPath("$.status").value(HttpStatus.INTERNAL_SERVER_ERROR.value()))
                 .andExpect(jsonPath("$.message").value(defaultErrorMessage))
                 .andExpect(jsonPath("$.timestamp").exists());
     }
-
 }
