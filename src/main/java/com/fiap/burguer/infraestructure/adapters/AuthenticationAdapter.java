@@ -30,9 +30,9 @@ public class AuthenticationAdapter implements AuthenticationPort {
             throw new RequestUnauthorized("Token não fornecido ou inválido.");
         }
 
-        if (validateIsTokenExpired(token)) {
+        if (Boolean.TRUE.equals(validateIsTokenExpired(token)))
             throw new RequestUnauthorized("Token expirou.");
-        }
+
     }
 
     @Override
