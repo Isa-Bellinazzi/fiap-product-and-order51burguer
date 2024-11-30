@@ -1,6 +1,6 @@
 package com.fiap.burguer.driver.handlers;
 
-import com.fiap.burguer.core.application.Exception.*;
+import com.fiap.burguer.core.application.exception.*;
 import com.fiap.burguer.driver.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,8 +10,6 @@ import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
-    private String DEFAULT_ERROR = "Erro na requisição, por favor contacte o suporte";
 
     @ExceptionHandler(RequestUnauthorized.class)
     public ResponseEntity<ErrorResponse> handleUnauthorizedException(RequestUnauthorized ex, WebRequest request) {
@@ -46,12 +44,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(Exception ex, WebRequest request) {
+        String genericError = "Erro na requisição, por favor contacte o suporte";
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                DEFAULT_ERROR,
+                genericError,
                 System.currentTimeMillis()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OrderResponseTest {
+ class OrderResponseTest {
     private Product product1;
     private Product product2;
 
@@ -29,7 +29,7 @@ public class OrderResponseTest {
         product2.setCategory(CategoryProduct.SNACK);
     }
     @Test
-    public void testConstructorAndGetters() {
+     void testConstructorAndGetters() {
         int id = 1;
         String status = "READY";
         double totalPrice = 45.99;
@@ -48,7 +48,7 @@ public class OrderResponseTest {
     }
 
     @Test
-    public void testDefaultConstructorAndSetters() {
+     void testDefaultConstructorAndSetters() {
         OrderResponse orderResponse = new OrderResponse();
 
         int id = 2;

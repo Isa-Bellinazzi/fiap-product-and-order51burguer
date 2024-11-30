@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class OrderController implements OrderApi {
@@ -26,7 +25,7 @@ public class OrderController implements OrderApi {
         this.getOrderByIdUseCase = getOrderById;
     }
 
-    public ResponseEntity<?> createOrder (OrderRequest orderRequest, String authorizationHeader) {
+    public ResponseEntity<OrderResponse> createOrder (OrderRequest orderRequest, String authorizationHeader) {
 
         Order order = createOrderUseCase.createOrder(orderRequest, authorizationHeader);
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);
@@ -38,7 +37,8 @@ public class OrderController implements OrderApi {
 
         List<OrderResponse> responses = orderEntities.stream()
                 .map(OrderPresenter::mapOrderToResponse)
-                .collect(Collectors.toList());
+                .toList();
+
         return ResponseEntity.ok(responses);
     }
 
@@ -48,7 +48,8 @@ public class OrderController implements OrderApi {
 
         List<OrderResponse> responses = orders.stream()
                 .map(OrderPresenter::mapOrderToResponse)
-                .collect(Collectors.toList());
+                .toList();
+
         return ResponseEntity.ok(responses);
     }
 
@@ -59,7 +60,7 @@ public class OrderController implements OrderApi {
     }
 
 
-    public ResponseEntity<?> updateOrderStatus(int id, StatusOrder newStatus, String authorizationHeader) {
+    public ResponseEntity<OrderResponse> updateOrderStatus(int id, StatusOrder newStatus, String authorizationHeader) {
 
         Order order = getOrderByIdUseCase.getOrderById(id, authorizationHeader);
 

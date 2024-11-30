@@ -1,4 +1,4 @@
-package com.fiap.burguer.core.application.Exception;
+package com.fiap.burguer.core.application.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -2,8 +2,6 @@ package com.fiap.burguer.core.application.utils;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import java.util.Date;
-
 public class JwtUtil {
 
     public DecodedJWT decodeToken(String token) {
@@ -34,7 +32,7 @@ public class JwtUtil {
         return decodedJWT.getClaim("email").asString();
     }
 
-    public Boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
         try {
             DecodedJWT decodedJWT = decodeToken(token);
             long expirationTime = decodedJWT.getClaim("exp").asLong();

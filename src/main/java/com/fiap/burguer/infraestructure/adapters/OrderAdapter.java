@@ -5,21 +5,20 @@ import com.fiap.burguer.infraestructure.repository.OrderRepository;
 import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.ports.OrderPort;
 import com.fiap.burguer.core.domain.Order;
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
-@AllArgsConstructor
 public class OrderAdapter implements OrderPort {
-    @Autowired
-    OrderRepository orderRepository;
 
-    private ModelMapper modelMapper;
+    private final OrderRepository orderRepository;
+    private final ModelMapper modelMapper;
+
+    public OrderAdapter(OrderRepository orderRepository, ModelMapper modelMapper) {
+        this.orderRepository = orderRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public Order save(Order order) {
@@ -42,7 +41,7 @@ public class OrderAdapter implements OrderPort {
 
         return orderEntityResponse.stream()
                 .map(orderEntity -> modelMapper.map(orderEntity, Order.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -51,7 +50,7 @@ public class OrderAdapter implements OrderPort {
 
         return orderEntityResponse.stream()
                 .map(orderEntity -> modelMapper.map(orderEntity, Order.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -59,8 +58,3 @@ public class OrderAdapter implements OrderPort {
         orderRepository.deleteById(id);
     }
 }
-
-
-
-
-
