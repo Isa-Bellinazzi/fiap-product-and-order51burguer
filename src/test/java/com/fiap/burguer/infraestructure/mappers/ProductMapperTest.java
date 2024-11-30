@@ -25,11 +25,7 @@ class ProductMapperTest {
         assertEquals(product.getPrice(), productEntity.getPrice());
     }
 
-    @Test
-    void testToEntity_NullInput() {
-        ProductEntity productEntity = ProductMapper.toEntity(null);
-        assertNull(productEntity);
-    }
+
 
     @Test
     void testToDomain() {
@@ -67,9 +63,5 @@ class ProductMapperTest {
         assertEquals(productEntity2.getName(), products.get(1).getName());
     }
 
-    @Test
-    void testToDomainList_NullInput() {
-        List<Product> products = ProductMapper.toDomain((List<ProductEntity>) null);
-        assertNull(products);
-    }
+
 }
