@@ -6,10 +6,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OrderRequestTest {
+ class OrderRequestTest {
 
     @Test
-    public void testConstructorAndGetters() {
+     void testConstructorAndGetters() {
         int productId = 1;
         int quantity = 2;
         List<OrderItemRequest> items = List.of(new OrderItemRequest(productId, quantity));
@@ -23,7 +23,7 @@ public class OrderRequestTest {
     }
 
     @Test
-    public void testDefaultConstructorAndSetters() {
+     void testDefaultConstructorAndSetters() {
         OrderRequest orderRequest = new OrderRequest();
         int productId = 1;
         int quantity = 3;
@@ -39,7 +39,7 @@ public class OrderRequestTest {
     }
 
     @Test
-    public void testOrderItemRequestConstructorAndGetters() {
+     void testOrderItemRequestConstructorAndGetters() {
         int productId = 2;
         int quantity = 4;
         OrderItemRequest orderItemRequest = new OrderItemRequest(productId, quantity);

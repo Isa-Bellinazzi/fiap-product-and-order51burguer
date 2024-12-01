@@ -1,5 +1,4 @@
 package com.fiap.burguer.driver.handlers;
-
 import com.fiap.burguer.IntegrationTest;
 import com.fiap.burguer.core.application.usecases.ProductUseCases;
 import com.fiap.burguer.driver.controller.ProductController;
@@ -15,10 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-public class GlobalExceptionHandlerTest extends IntegrationTest {
+ class GlobalExceptionHandlerTest extends IntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -28,6 +26,8 @@ public class GlobalExceptionHandlerTest extends IntegrationTest {
 
     @Mock
     private ProductUseCases productUseCases;
+
+    String authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzQxOTM1MTgsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.2mOK0LBKuy2lAXFrEuoUQxTvHzXq8ypDS8vnW-b3sD8";
 
     @BeforeEach
     void setUp() {

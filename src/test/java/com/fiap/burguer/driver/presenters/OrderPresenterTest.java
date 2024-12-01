@@ -6,15 +6,13 @@ import com.fiap.burguer.core.domain.Product;
 import com.fiap.burguer.driver.dto.OrderResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OrderPresenterTest {
+ class OrderPresenterTest {
 
     private Order order;
     private Product product;
@@ -45,7 +43,7 @@ public class OrderPresenterTest {
 
 
     @Test
-    public void testMapOrderToResponseWithValidOrder() {
+     void testMapOrderToResponseWithValidOrder() {
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);
 
         assertNotNull(response);
@@ -60,14 +58,14 @@ public class OrderPresenterTest {
     }
 
     @Test
-    public void testMapOrderToResponseWithNullOrder() {
+     void testMapOrderToResponseWithNullOrder() {
         OrderPresenter.mapOrderToResponse(null);
         OrderResponse response = null;
         assertNull(response);
     }
 
     @Test
-    public void testMapOrderToResponseWithNullOrderItems() {
+     void testMapOrderToResponseWithNullOrderItems() {
         order.setOrderItemsList(null);
 
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);
@@ -83,7 +81,7 @@ public class OrderPresenterTest {
 
 
     @Test
-    public void testMapOrderToResponseWithEmptyOrderItems() {
+     void testMapOrderToResponseWithEmptyOrderItems() {
         order.setOrderItemsList(new ArrayList<>());
 
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);

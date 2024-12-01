@@ -5,9 +5,7 @@ import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.usecases.*;
 import com.fiap.burguer.core.domain.Order;
 import com.fiap.burguer.driver.dto.OrderRequest;
-import com.fiap.burguer.driver.dto.OrderResponse;
 import com.fiap.burguer.driver.handlers.GlobalExceptionHandler;
-import com.fiap.burguer.driver.presenters.OrderPresenter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,12 +16,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-public class OrderControllerTest extends IntegrationTest {
+ class OrderControllerTest extends IntegrationTest {
 
     @InjectMocks
     private OrderController orderController;
@@ -42,16 +39,15 @@ public class OrderControllerTest extends IntegrationTest {
 
     private OrderRequest orderRequest;
     private Order order;
-    private OrderResponse orderResponse;
 
-    @BeforeEach
+     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
         orderRequest = new OrderRequest();
         order = getOrderMock();
 
-        orderResponse = new OrderResponse();
-        orderController = new OrderController( createOrderUseCase, getAllOrdersUseCase, ordersStatusUseCase, getOrderByIdUseCase);
+
+         orderController = new OrderController( createOrderUseCase, getAllOrdersUseCase, ordersStatusUseCase, getOrderByIdUseCase);
         mvc = MockMvcBuilders.standaloneSetup(orderController)
                 .setControllerAdvice(new GlobalExceptionHandler())
                 .addFilter((request, response, chain) -> {
@@ -72,7 +68,7 @@ public class OrderControllerTest extends IntegrationTest {
     }
 
     @Test
-    public void testCreateOrder() throws Exception {
+     void testCreateOrder() throws Exception {
         when(createOrderUseCase.createOrder(any(), any())).thenReturn(order);
         String json = new ObjectMapper().writeValueAsString(orderRequest);
         mvc.perform(post("/orders").contentType(MediaType.APPLICATION_JSON)
@@ -81,7 +77,7 @@ public class OrderControllerTest extends IntegrationTest {
     }
 
     @Test
-    public void testGetAllOrders() throws Exception {
+     void testGetAllOrders() throws Exception {
         List<Order> orders = Arrays.asList(order);
         when(getAllOrdersUseCase.getAllOrders()).thenReturn(orders);
         mvc.perform(get("/orders").contentType(MediaType.APPLICATION_JSON))
@@ -89,7 +85,7 @@ public class OrderControllerTest extends IntegrationTest {
     }
 
     @Test
-    public void testGetOrdersByStatus() throws Exception {
+     void testGetOrdersByStatus() throws Exception {
         List<Order> orders = Arrays.asList(order);
         when(ordersStatusUseCase.getOrdersByStatus(any())).thenReturn(orders);
         mvc.perform(get("/orders/status/"+StatusOrder.READY).contentType(MediaType.APPLICATION_JSON))

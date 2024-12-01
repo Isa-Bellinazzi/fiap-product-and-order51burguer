@@ -11,6 +11,10 @@ import java.util.List;
 
 public class OrderPresenter {
 
+    private  OrderPresenter(){
+
+    }
+
     public static OrderResponse mapOrderToResponse(Order order) {
         if (order == null) {
             return null;

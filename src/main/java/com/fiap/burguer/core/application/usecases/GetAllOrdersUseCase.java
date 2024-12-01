@@ -1,5 +1,5 @@
 package com.fiap.burguer.core.application.usecases;
-import com.fiap.burguer.core.application.Exception.ResourceNotFoundException;
+import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.application.ports.AuthenticationPort;
 import com.fiap.burguer.core.application.ports.OrderPort;
@@ -26,7 +26,7 @@ public class GetAllOrdersUseCase {
     }
 
 
-    private int getStatusPriority(StatusOrder status) {
+    protected int getStatusPriority(StatusOrder status) {
         return switch (status) {
             case READY -> 1;
             case PREPARATION -> 2;
