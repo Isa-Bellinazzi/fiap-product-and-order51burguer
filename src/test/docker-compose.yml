@@ -1,0 +1,38 @@
+
+services:
+  db:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_ROOT_USER=postgres
+      - POSTGRES_ROOT_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./resources/pg-data/:/docker-entrypoint-initdb.d/
+    restart: always
+    networks:
+      - sql_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  wiremock:
+    image: wiremock/wiremock:3.10.0
+    container_name: wiremock
+    ports:
+      - "${CHECKOUT_PORT}:8080"
+    volumes:
+      - ./resources/wiremock:/home/wiremock
+    networks:
+      - sql_network
+
+
+networks:
+  sql_network:
+    driver: bridge
