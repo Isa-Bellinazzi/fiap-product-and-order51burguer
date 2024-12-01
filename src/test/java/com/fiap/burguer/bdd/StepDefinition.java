@@ -13,6 +13,7 @@ import io.cucumber.java.pt.Quando;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Assert;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
@@ -37,9 +38,11 @@ public class StepDefinition extends CucumberContext {
             "email", "mock@user.com"
             ));
 
-    private String ENDPOINT_BASE_ORDER = "http://localhost:8080/orders";
+    @Value("${bdd.url-order}")
+    private String ENDPOINT_BASE_ORDER;
 
-    private String ENDPOINT_BASE_PRODUCT = "http://localhost:8080/products";
+    @Value("${bdd.url-product}")
+    private String ENDPOINT_BASE_PRODUCT;
 
     @Dado("que exista um produto cadastrado")
     public void queOUsuárioPreenchaOsItensDoPedido() {
