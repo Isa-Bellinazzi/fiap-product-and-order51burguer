@@ -17,14 +17,14 @@ public class TimeWaitingOrderQueueUseCase {
         int totalWaitingTime = 0;
 
         try {
-            List<Order> receivedOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED);
+            List<Order> receivedOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED, authorizationHeader);
             totalWaitingTime += sumTimeWaitingOrder(receivedOrderEntities);
         } catch (ResourceNotFoundException e) {
             logger.warning("No orders found with status RECEIVED: " + e.getMessage());
         }
 
         try {
-            List<Order> preparationOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION);
+            List<Order> preparationOrderEntities = getOrdersByStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader);
             totalWaitingTime += sumTimeWaitingOrder(preparationOrderEntities);
         } catch (ResourceNotFoundException e) {
             logger.warning("No orders found with status PREPARATION: " + e.getMessage());

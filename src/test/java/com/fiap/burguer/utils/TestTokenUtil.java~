@@ -1,0 +1,4 @@
+package com.fiap.burguer.utils;
+
+public class TestTokenUtil {
+}

@@ -1,4 +1,5 @@
 package com.fiap.burguer.core.application.usecases;
+
 import com.fiap.burguer.core.application.exception.RequestException;
 import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.enums.StatusOrder;
@@ -17,9 +18,7 @@ public class OrdersStatusUseCase {
         this.authenticationPort = authenticationPort;
     }
 
-    public List<Order> getOrdersByStatus(StatusOrder status, String authorizationHeader) {
-        authenticationPort.validateAuthorizationHeader(authorizationHeader);
-
+    public List<Order> getOrdersByStatus(StatusOrder status) {
         List<Order> orderEntities = orderPort.findByStatus(status);
 
         if (orderEntities == null || orderEntities.isEmpty()) {
@@ -41,7 +40,7 @@ public class OrdersStatusUseCase {
         orderPort.save(order, authorizationHeader);
     }
 
-    public     boolean isValidStatusUpdate(StatusOrder currentStatus, StatusOrder newStatus) {
+    public boolean isValidStatusUpdate(StatusOrder currentStatus, StatusOrder newStatus) {
         if (!isValidNextStatus(currentStatus, newStatus)) {
             return false;
         }
@@ -58,10 +57,9 @@ public class OrdersStatusUseCase {
             return false;
         }
         return switch (currentStatus) {
-            case WAITINGPAYMENT ->
-                    newStatus == StatusOrder.APPROVEDPAYMENT ||
-                            newStatus == StatusOrder.REJECTEDPAYMENT ||
-                            newStatus == StatusOrder.CANCELED;
+            case WAITINGPAYMENT -> newStatus == StatusOrder.APPROVEDPAYMENT ||
+                    newStatus == StatusOrder.REJECTEDPAYMENT ||
+                    newStatus == StatusOrder.CANCELED;
             case APPROVEDPAYMENT -> newStatus == StatusOrder.RECEIVED;
             case RECEIVED -> newStatus == StatusOrder.PREPARATION;
             case PREPARATION -> newStatus == StatusOrder.READY;
@@ -74,7 +72,6 @@ public class OrdersStatusUseCase {
     public boolean isCancelValid(StatusOrder currentStatus) {
         return currentStatus == StatusOrder.WAITINGPAYMENT || currentStatus == StatusOrder.REJECTEDPAYMENT;
     }
-
 
 
 }

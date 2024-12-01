@@ -36,15 +36,15 @@ class TimeWaitingOrderQueueUseCaseTest {
         Order order2 = new Order();
         order2.setTimeWaitingOrder(20);
 
-        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED, authorizationHeader))
+        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED))
                 .thenReturn(List.of(order1));
-        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader))
+        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION))
                 .thenReturn(List.of(order2));
 
         int result = timeWaitingOrderQueueUseCase.execute(authorizationHeader);
 
-        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.RECEIVED, authorizationHeader);
-        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader);
+        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.RECEIVED);
+        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.PREPARATION);
 
         assertEquals(30, result);
     }
@@ -53,15 +53,15 @@ class TimeWaitingOrderQueueUseCaseTest {
     void testExecute_NoOrdersFound() {
         String authorizationHeader = "Bearer validToken";
 
-        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED, authorizationHeader))
+        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED))
                 .thenThrow(new ResourceNotFoundException("No received orders found"));
-        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader))
+        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION))
                 .thenThrow(new ResourceNotFoundException("No preparation orders found"));
 
         int result = timeWaitingOrderQueueUseCase.execute(authorizationHeader);
 
-        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.RECEIVED, authorizationHeader);
-        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader);
+        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.RECEIVED);
+        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.PREPARATION);
 
         assertEquals(0, result);
     }
@@ -73,15 +73,15 @@ class TimeWaitingOrderQueueUseCaseTest {
         Order order = new Order();
         order.setTimeWaitingOrder(15);
 
-        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED, authorizationHeader))
+        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.RECEIVED))
                 .thenReturn(List.of(order));
-        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader))
+        when(ordersStatusUseCase.getOrdersByStatus(StatusOrder.PREPARATION))
                 .thenThrow(new ResourceNotFoundException("No preparation orders found"));
 
         int result = timeWaitingOrderQueueUseCase.execute(authorizationHeader);
 
-        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.RECEIVED, authorizationHeader);
-        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.PREPARATION, authorizationHeader);
+        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.RECEIVED);
+        verify(ordersStatusUseCase).getOrdersByStatus(StatusOrder.PREPARATION);
 
         assertEquals(order.getTimeWaitingOrder(), result);
     }

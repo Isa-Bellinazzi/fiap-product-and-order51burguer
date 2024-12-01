@@ -32,8 +32,8 @@ public class OrderController implements OrderApi {
         return ResponseEntity.ok(response);
     }
 
-    public ResponseEntity<List<OrderResponse>> getAllOrders( String authorizationHeader) {
-        List<Order> orderEntities = getAllOrdersUseCase.getAllOrders(authorizationHeader);
+    public ResponseEntity<List<OrderResponse>> getAllOrders( ) {
+        List<Order> orderEntities = getAllOrdersUseCase.getAllOrders();
 
         List<OrderResponse> responses = orderEntities.stream()
                 .map(OrderPresenter::mapOrderToResponse)
@@ -43,8 +43,8 @@ public class OrderController implements OrderApi {
     }
 
 
-    public ResponseEntity<List<OrderResponse>> getOrdersByStatus(StatusOrder status, String authorizationHeader) {
-        List<Order> orders = ordersByStatusUseCase.getOrdersByStatus(status, authorizationHeader);
+    public ResponseEntity<List<OrderResponse>> getOrdersByStatus(StatusOrder status) {
+        List<Order> orders = ordersByStatusUseCase.getOrdersByStatus(status);
 
         List<OrderResponse> responses = orders.stream()
                 .map(OrderPresenter::mapOrderToResponse)
@@ -53,8 +53,8 @@ public class OrderController implements OrderApi {
         return ResponseEntity.ok(responses);
     }
 
-    public  ResponseEntity<OrderResponse> getOrderById(int id, String authorizationHeader) {
-        Order order = getOrderByIdUseCase.getOrderById(id, authorizationHeader);
+    public  ResponseEntity<OrderResponse> getOrderById(int id) {
+        Order order = getOrderByIdUseCase.getOrderById(id);
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -62,7 +62,7 @@ public class OrderController implements OrderApi {
 
     public ResponseEntity<OrderResponse> updateOrderStatus(int id, StatusOrder newStatus, String authorizationHeader) {
 
-        Order order = getOrderByIdUseCase.getOrderById(id, authorizationHeader);
+        Order order = getOrderByIdUseCase.getOrderById(id);
 
         if(newStatus == StatusOrder.APPROVEDPAYMENT){
             ordersByStatusUseCase.updateOrderStatus(order, newStatus, authorizationHeader);

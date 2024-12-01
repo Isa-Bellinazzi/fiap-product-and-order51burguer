@@ -32,11 +32,11 @@ public interface OrderApi {
                     content = @Content),
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor",
                     content = @Content)})
-     ResponseEntity<OrderResponse> createOrder(@RequestBody @Valid OrderRequest orderRequest,
+    public ResponseEntity<?> createOrder(@RequestBody @Valid OrderRequest orderRequest,
                                          @RequestHeader(value = "Authorization", required = false) String authorizationHeader);
 
     @GetMapping
-    @Operation(summary = "Consulta todos os pedidos em preparação")
+    @Operation(summary = "Consulta todos os pedidos")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Encontrou pedidos",
                     content = {@Content(mediaType = "application/json",
@@ -82,7 +82,7 @@ public interface OrderApi {
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Pedido não encontrado",
                     content = @Content)})
-    public ResponseEntity<OrderResponse> updateOrderStatus(
+    public ResponseEntity<?> updateOrderStatus(
             @Parameter(description = "ID do pedido a ser atualizado", required = true)
             @PathVariable("id") int id,
             @Parameter(description = "Novo status do pedido", required = true, schema = @Schema(allowableValues = {

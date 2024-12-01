@@ -30,9 +30,9 @@ public class OrderAdapter implements OrderPort {
     public Order save(Order order, String authorizationHeader) {
         OrderEntity orderEntity = modelMapper.map(order, OrderEntity.class);
         OrderEntity orderEntityResponse = orderRepository.save(orderEntity);
-        if (order.getStatus() == StatusOrder.WAITINGPAYMENT) {
-            createCheckout(orderEntityResponse, authorizationHeader);
-        }
+//        if (order.getStatus() == StatusOrder.WAITINGPAYMENT) {
+//            createCheckout(orderEntityResponse, authorizationHeader);
+//        }
         return modelMapper.map(orderEntityResponse, Order.class);
     }
 
@@ -82,7 +82,7 @@ public class OrderAdapter implements OrderPort {
 
         try {
             restTemplate.exchange(
-                    "http://localhost:8080/checkout/create",
+                    "${{ secrets.CHECKOUT_BASE_URL }}/checkout/create",
                     HttpMethod.POST,
                     entity,
                     Void.class
@@ -93,6 +93,4 @@ public class OrderAdapter implements OrderPort {
             throw new RuntimeException("Erro ao criar o checkout.", e);
         }
     }
-
-
 }
