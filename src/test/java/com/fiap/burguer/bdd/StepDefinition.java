@@ -13,6 +13,7 @@ import io.cucumber.java.pt.Quando;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Assert;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
@@ -37,9 +38,11 @@ public class StepDefinition extends CucumberContext {
             "email", "mock@user.com"
             ));
 
-    private String ENDPOINT_BASE_ORDER = "http://localhost:8080/orders";
+    @Value("${bdd.url-order}")
+    private String ENDPOINT_BASE_ORDER;
 
-    private String ENDPOINT_BASE_PRODUCT = "http://localhost:8080/products";
+    @Value("${bdd.url-product}")
+    private String ENDPOINT_BASE_PRODUCT;
 
     @Dado("que exista um produto cadastrado")
     public void queOUsuárioPreenchaOsItensDoPedido() {
@@ -139,7 +142,6 @@ public class StepDefinition extends CucumberContext {
         Assert.assertTrue(ordersList.stream().allMatch(order -> order.getStatus().equals(StatusOrder.WAITINGPAYMENT.toString())));
     }
 
-
     @Dado("que existe um pedido na base de dados")
     public void queExisteUmPedidoNaBaseDeDados() {
         createOrder();
@@ -157,28 +159,27 @@ public class StepDefinition extends CucumberContext {
         Assert.assertNotNull(orderResponse);
     }
 
-    @Dado("que existe um pedido na base de dados com status APPROVEDPAYMENT")
-    public void queExisteUmPedidoNaBaseDeDadosComStatusAPPROVEDPAYMENT() {
-        createOrder();
+    @Quando("o cliente passar o id e o status APPROVEDPAYMENT do pedido para a API de update status")
+    public void oClientePassarOIdEOStatusAPPROVEDPAYMENTDoPedidoParaAAPIDeUpdateStatus() {
         orderResponse = response.then().extract().as(OrderResponse.class);
         updateStatusOrder(orderResponse.getId(),StatusOrder.APPROVEDPAYMENT);
-    }
-
-    @Quando("o cliente passar o id e o status RECEIVED do pedido para a API de update status")
-    public void oClientePassarOIdEOStatusRECEIVEDDoPedidoParaAAPIDeUpdateStatus() {
-        orderResponse = response.then().extract().as(OrderResponse.class);
-        updateStatusOrder(orderResponse.getId(),StatusOrder.RECEIVED);
     }
 
     @Entao("o sistema deve realizar o update")
     public void oSistemaDeveRealizarOUpdate() {
         Assert.assertEquals(response.getStatusCode(), HttpStatus.OK.value());
+
     }
 
-    @E("o sistema deve retornar o pedido com o status trocado")
-    public void oSistemaDeveRetornarOPedidoComOStatusTrocado() {
+    @E("o sistema deve alterar automaticamente o status para RECEIVED")
+    public void oSistemaDeveAlterarAutomaticamenteOStatusParaRECEIVED() {
         orderResponse = response.then().extract().as(OrderResponse.class);
         Assert.assertTrue(orderResponse.getStatus().equals(StatusOrder.RECEIVED.toString()));
+
+        OrderResponse updatedOrderResponse = response.then().extract().as(OrderResponse.class);
+
+        Assert.assertEquals(updatedOrderResponse.getStatus(), StatusOrder.RECEIVED.toString());
+
     }
 
     @Dado("que existe um pedido na base de dados com status REJECTEDPAYMENT")
@@ -186,6 +187,12 @@ public class StepDefinition extends CucumberContext {
         createOrder();
         orderResponse = response.then().extract().as(OrderResponse.class);
         updateStatusOrder(orderResponse.getId(),StatusOrder.REJECTEDPAYMENT);
+    }
+
+    @Quando("o cliente passar o id e o status RECEIVED do pedido para a API de update status")
+    public void oClientePassarOIdEOStatusRECEIVEDDoPedidoParaAAPIDeUpdateStatus() {
+        orderResponse = response.then().extract().as(OrderResponse.class);
+        updateStatusOrder(orderResponse.getId(),StatusOrder.APPROVEDPAYMENT);
     }
 
     @Entao("o sistema não deve realizar o update")

@@ -72,6 +72,4 @@ public class OrdersStatusUseCase {
     public boolean isCancelValid(StatusOrder currentStatus) {
         return currentStatus == StatusOrder.WAITINGPAYMENT || currentStatus == StatusOrder.REJECTEDPAYMENT;
     }
-
-
 }
