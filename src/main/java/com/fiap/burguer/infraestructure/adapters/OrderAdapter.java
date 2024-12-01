@@ -30,9 +30,9 @@ public class OrderAdapter implements OrderPort {
     public Order save(Order order, String authorizationHeader) {
         OrderEntity orderEntity = modelMapper.map(order, OrderEntity.class);
         OrderEntity orderEntityResponse = orderRepository.save(orderEntity);
-//        if (order.getStatus() == StatusOrder.WAITINGPAYMENT) {
-//            createCheckout(orderEntityResponse, authorizationHeader);
-//        }
+        if (order.getStatus() == StatusOrder.WAITINGPAYMENT) {
+            createCheckout(orderEntityResponse, authorizationHeader);
+        }
         return modelMapper.map(orderEntityResponse, Order.class);
     }
 

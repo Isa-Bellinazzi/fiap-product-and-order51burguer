@@ -73,7 +73,4 @@ public class OrderController implements OrderApi {
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);
         return ResponseEntity.ok(response);
     }
-
-
-
 }

@@ -14,13 +14,10 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-
+import org.springframework.http.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 
 public class StepDefinition extends CucumberContext {
@@ -44,6 +41,21 @@ public class StepDefinition extends CucumberContext {
     @Value("${bdd.url-product}")
     private String ENDPOINT_BASE_PRODUCT;
 
+    private void createOrder() {
+        OrderRequest orderRequest = new OrderRequest();
+        OrderItemRequest orderItemRequest = new OrderItemRequest();
+        orderItemRequest.setProductId(1);
+        orderItemRequest.setQuantity(2);
+        orderRequest.setItems(List.of(orderItemRequest));
+
+        response = given().contentType(MediaType.APPLICATION_JSON_VALUE).headers(
+                        "Authorization",
+                        token,
+                        "Accept",
+                        ContentType.JSON)
+                .body(orderRequest).when().post(ENDPOINT_BASE_ORDER);
+    }
+
     @Dado("que exista um produto cadastrado")
     public void queOUsuárioPreenchaOsItensDoPedido() {
         ProductCreate product = new ProductCreate("water","http://gangstaburguer.com/images/water.jpg", 2, "Agua cara", 15.0, CategoryProduct.DRINK);
@@ -61,24 +73,9 @@ public class StepDefinition extends CucumberContext {
 
     }
 
-
     @Quando("o usuário submeter o pedido para criacao")
     public void oUsuárioSubmeterOPedido() {
         createOrder();
-    }
-
-    private void createOrder() {
-        OrderRequest orderRequest = new OrderRequest();
-        OrderItemRequest orderItemRequest = new OrderItemRequest();
-        orderItemRequest.setProductId(1);
-        orderItemRequest.setQuantity(2);
-        orderRequest.setItems(List.of(orderItemRequest));
-        response = given().contentType(MediaType.APPLICATION_JSON_VALUE).headers(
-                        "Authorization",
-                        token,
-                        "Accept",
-                        ContentType.JSON)
-                .body(orderRequest).when().post(ENDPOINT_BASE_ORDER);
     }
 
     @Entao("o sistema deve salvar o pedido")
