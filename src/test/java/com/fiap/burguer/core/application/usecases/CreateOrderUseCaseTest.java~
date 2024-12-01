@@ -7,7 +7,6 @@ import com.fiap.burguer.core.application.ports.ProductPort;
 import com.fiap.burguer.core.domain.Order;
 import com.fiap.burguer.core.domain.OrderItem;
 import com.fiap.burguer.core.domain.Product;
-import com.fiap.burguer.driver.dto.OrderItemRequest;
 import com.fiap.burguer.driver.dto.OrderRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +48,7 @@ class CreateOrderUseCaseTest {
         product.setPreparationTime(5);
         product.setDescription("Burger");
 
-        OrderItemRequest item = new OrderItemRequest();
+        OrderRequest.OrderItemRequest item = new OrderRequest.OrderItemRequest();
         item.setProductId(1);
         item.setQuantity(2);
 

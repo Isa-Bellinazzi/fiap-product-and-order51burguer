@@ -1,6 +1,7 @@
 package com.fiap.burguer.core.application.usecases;
 
 import com.fiap.burguer.core.application.exception.RequestException;
+import com.fiap.burguer.driver.dto.OrderItemRequest;
 import com.fiap.burguer.driver.dto.OrderRequest;
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +16,11 @@ class ValidateOrderUseCaseTest {
     @Test
     void testExecute_ValidOrder() {
         OrderRequest orderRequest = new OrderRequest();
-        OrderRequest.OrderItemRequest item1 = new OrderRequest.OrderItemRequest();
+        OrderItemRequest item1 = new OrderItemRequest();
         item1.setProductId(1);
         item1.setQuantity(2);
 
-        OrderRequest.OrderItemRequest item2 = new OrderRequest.OrderItemRequest();
+        OrderItemRequest item2 = new OrderItemRequest();
         item2.setProductId(2);
         item2.setQuantity(1);
 
@@ -31,7 +32,7 @@ class ValidateOrderUseCaseTest {
     @Test
     void testExecute_InvalidOrder_ZeroQuantity() {
         OrderRequest orderRequest = new OrderRequest();
-        OrderRequest.OrderItemRequest item = new OrderRequest.OrderItemRequest();
+        OrderItemRequest item = new OrderItemRequest();
         item.setProductId(1);
         item.setQuantity(0);
 
@@ -45,7 +46,7 @@ class ValidateOrderUseCaseTest {
     @Test
     void testExecute_InvalidOrder_NegativeQuantity() {
         OrderRequest orderRequest = new OrderRequest();
-        OrderRequest.OrderItemRequest item = new OrderRequest.OrderItemRequest();
+        OrderItemRequest item = new OrderItemRequest();
         item.setProductId(1);
         item.setQuantity(-5);
 

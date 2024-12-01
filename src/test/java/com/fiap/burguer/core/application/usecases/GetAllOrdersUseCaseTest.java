@@ -28,8 +28,6 @@ class GetAllOrdersUseCaseTest {
 
     @Test
     void shouldReturnAllOrdersSuccessfully() {
-        String authorizationHeader = "Bearer token";
-
         Order order1 = new Order();
         order1.setId(1);
         order1.setStatus(StatusOrder.RECEIVED);
@@ -40,25 +38,21 @@ class GetAllOrdersUseCaseTest {
 
         when(orderPort.findAll()).thenReturn(List.of(order1, order2));
 
-        List<Order> orders = getAllOrdersUseCase.getAllOrders(authorizationHeader);
+        List<Order> orders = getAllOrdersUseCase.getAllOrders();
 
         assertNotNull(orders);
         assertEquals(2, orders.size());
-        verify(authenticationPort).validateAuthorizationHeader(authorizationHeader);
         verify(orderPort).findAll();
     }
 
     @Test
     void shouldThrowResourceNotFoundExceptionWhenNoOrdersExist() {
         // Arrange
-        String authorizationHeader = "Bearer token";
-
         when(orderPort.findAll()).thenReturn(List.of());
 
         ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,
-                () -> getAllOrdersUseCase.getAllOrders(authorizationHeader));
+                () -> getAllOrdersUseCase.getAllOrders());
         assertEquals("Não existem pedidos ainda", exception.getMessage());
-        verify(authenticationPort).validateAuthorizationHeader(authorizationHeader);
         verify(orderPort).findAll();
     }
 

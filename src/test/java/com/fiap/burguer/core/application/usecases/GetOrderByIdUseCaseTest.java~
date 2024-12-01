@@ -27,6 +27,7 @@ class GetOrderByIdUseCaseTest {
     @Test
     void shouldReturnOrderWhenOrderExists() {
         // Arrange
+        String authorizationHeader = "Bearer token";
         int orderId = 1;
         Order order = new Order();
         order.setId(orderId);
@@ -43,7 +44,8 @@ class GetOrderByIdUseCaseTest {
 
     @Test
     void shouldThrowRequestExceptionWhenIdIsInvalid() {
-       int invalidOrderId = 0;
+        String authorizationHeader = "Bearer token";
+        int invalidOrderId = 0;
 
         RequestException exception = assertThrows(RequestException.class,
                 () -> getOrderByIdUseCase.getOrderById(invalidOrderId));
@@ -54,6 +56,7 @@ class GetOrderByIdUseCaseTest {
 
     @Test
     void shouldThrowResourceNotFoundExceptionWhenOrderNotFound() {
+        String authorizationHeader = "Bearer token";
         int orderId = 1;
         when(orderPort.findById(orderId)).thenReturn(null);
 
@@ -62,11 +65,13 @@ class GetOrderByIdUseCaseTest {
 
         assertEquals("Pedido não encontrado", exception.getMessage());
 
+        //verify(authenticationPort).validateAuthorizationHeader(authorizationHeader);
         verify(orderPort).findById(orderId);
     }
 
     @Test
     void shouldValidateAuthorizationHeader() {
+        String authorizationHeader = "Bearer token";
         int orderId = 1;
         Order order = new Order();
         order.setId(orderId);

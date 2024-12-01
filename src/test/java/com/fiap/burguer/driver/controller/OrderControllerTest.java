@@ -79,7 +79,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     @Test
      void testGetAllOrders() throws Exception {
         List<Order> orders = Arrays.asList(order);
-        when(getAllOrdersUseCase.getAllOrders(any())).thenReturn(orders);
+        when(getAllOrdersUseCase.getAllOrders()).thenReturn(orders);
         mvc.perform(get("/orders").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -87,21 +87,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     @Test
      void testGetOrdersByStatus() throws Exception {
         List<Order> orders = Arrays.asList(order);
-        when(ordersStatusUseCase.getOrdersByStatus(any(), any())).thenReturn(orders);
+        when(ordersStatusUseCase.getOrdersByStatus(any())).thenReturn(orders);
         mvc.perform(get("/orders/status/"+StatusOrder.READY).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
-     void testGetOrderById() throws Exception {
-        when(getOrderByIdUseCase.getOrderById(1, "authorizationHeader")).thenReturn(order);
+    public void testGetOrderById() throws Exception {
+        when(getOrderByIdUseCase.getOrderById(1)).thenReturn(order);
         mvc.perform(get("/orders/"+1).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
-     void testUpdateOrderStatus() throws Exception {
-        when(getOrderByIdUseCase.getOrderById(1, "authorizationHeader")).thenReturn(this.order);
+    public void testUpdateOrderStatus() throws Exception {
+        when(getOrderByIdUseCase.getOrderById(1)).thenReturn(this.order);
 
         mvc.perform(put("/orders/"+1+"/status")
                         .param("newStatus", String.valueOf(StatusOrder.READY))
