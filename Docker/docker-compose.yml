@@ -5,6 +5,7 @@ services:
       context: ..
       dockerfile: Docker/Dockerfile
     image: 51-burguer-app
+    container_name: 51-burguer-app
     restart: always
     ports:
       - "8787:8080"

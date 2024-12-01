@@ -50,7 +50,8 @@ public class CreateOrderUseCase {
         List<OrderItem> orderItems = makeOrderItemObjects(orderRequest, timeOrder, order);
         order.setTimeWaitingOrder(timeOrder.get() + timeWaitingOrderQueueUseCase.execute(authorizationHeader));
         order.setOrderItemsList(orderItems);
-        return orderPort.save(order);
+
+        return orderPort.save(order, authorizationHeader);
     }
 
     private List<OrderItem> makeOrderItemObjects(OrderRequest orderRequest, AtomicReference<Integer> timeOrder, Order order) {

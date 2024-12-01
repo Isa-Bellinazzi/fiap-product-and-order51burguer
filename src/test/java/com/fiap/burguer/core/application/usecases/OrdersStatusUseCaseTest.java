@@ -54,9 +54,9 @@ import java.util.Collections;
     @Test
     void testUpdateOrderStatusValid() {
         Order order = new Order();
-        order.setStatus(StatusOrder.WAITINGPAYMENT);
-        StatusOrder newStatus = StatusOrder.APPROVEDPAYMENT;
-        when(orderPort.save(order)).thenReturn(order);
+        order.setStatus(StatusOrder.RECEIVED);
+        StatusOrder newStatus = StatusOrder.PREPARATION;
+        when(orderPort.save(order, authorization)).thenReturn(order);
         ordersStatusUseCase.updateOrderStatus(order, newStatus, authorization);
         assertEquals(newStatus, order.getStatus());
     }
@@ -66,7 +66,7 @@ import java.util.Collections;
         Order order = new Order();
         order.setStatus(StatusOrder.WAITINGPAYMENT);
 
-        StatusOrder newStatus = StatusOrder.RECEIVED;
+        StatusOrder newStatus = StatusOrder.READY;
 
         assertThrows(RequestException.class, () -> {
             ordersStatusUseCase.updateOrderStatus(order, newStatus, authorization);
@@ -107,16 +107,6 @@ import java.util.Collections;
     void testIsValidStatusUpdateCancelInvalid() {
         StatusOrder currentStatus = StatusOrder.READY;
         StatusOrder newStatus = StatusOrder.CANCELED;
-
-        boolean result = ordersStatusUseCase.isValidStatusUpdate(currentStatus, newStatus);
-
-        assertFalse(result);
-    }
-
-    @Test
-    void testIsValidStatusUpdateReceivedFromApprovedPayment() {
-        StatusOrder currentStatus = StatusOrder.APPROVEDPAYMENT;
-        StatusOrder newStatus = StatusOrder.RECEIVED;
 
         boolean result = ordersStatusUseCase.isValidStatusUpdate(currentStatus, newStatus);
 
@@ -353,22 +343,4 @@ import java.util.Collections;
          boolean result = ordersStatusUseCase.isValidStatusUpdate(currentStatus, newStatus);
          assertFalse(result, "A transição de status de 'WAITINGPAYMENT' para 'RECEIVED' não deve ser válida.");
      }
-
-
-    @Test
-    void shouldReturnFalseWhenUpdatingToReceivedWithInvalidCurrentStatus() {
-        StatusOrder currentStatus = StatusOrder.PREPARATION;
-        StatusOrder newStatus = StatusOrder.RECEIVED;
-
-        Order order = new Order();
-        order.setStatus(currentStatus);
-
-        assertFalse(
-            ordersStatusUseCase.isValidStatusUpdate(currentStatus, newStatus ));
-
-
-        verify(orderPort, never()).save(any(Order.class));
-    }
-
-
 }

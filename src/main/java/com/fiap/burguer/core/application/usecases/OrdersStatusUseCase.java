@@ -38,7 +38,7 @@ public class OrdersStatusUseCase {
             throw new RequestException("Atualização de status para: " + newStatus + " inválida");
         }
         order.setStatus(newStatus);
-        orderPort.save(order);
+        orderPort.save(order, authorizationHeader);
     }
 
     public     boolean isValidStatusUpdate(StatusOrder currentStatus, StatusOrder newStatus) {
@@ -50,18 +50,19 @@ public class OrdersStatusUseCase {
             return isCancelValid(currentStatus);
         }
 
-
-
         return true;
     }
 
     public boolean isValidNextStatus(StatusOrder currentStatus, StatusOrder newStatus) {
-        if (newStatus == StatusOrder.RECEIVED && currentStatus != StatusOrder.APPROVEDPAYMENT) {
+        if (newStatus == StatusOrder.RECEIVED && currentStatus != StatusOrder.APPROVEDPAYMENT && currentStatus != StatusOrder.WAITINGPAYMENT) {
             return false;
         }
         return switch (currentStatus) {
             case WAITINGPAYMENT ->
-                    newStatus == StatusOrder.APPROVEDPAYMENT || newStatus == StatusOrder.REJECTEDPAYMENT || newStatus == StatusOrder.CANCELED;
+                    newStatus == StatusOrder.APPROVEDPAYMENT ||
+                            newStatus == StatusOrder.REJECTEDPAYMENT ||
+                            newStatus == StatusOrder.CANCELED;
+            case APPROVEDPAYMENT -> newStatus == StatusOrder.RECEIVED;
             case RECEIVED -> newStatus == StatusOrder.PREPARATION;
             case PREPARATION -> newStatus == StatusOrder.READY;
             case READY -> newStatus == StatusOrder.FINISHED;
