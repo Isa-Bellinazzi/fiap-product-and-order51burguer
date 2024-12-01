@@ -1,7 +1,6 @@
 package com.fiap.burguer.bdd;
 
 
-import com.fiap.burguer.SpringIntegrationTest;
 import com.fiap.burguer.core.application.enums.CategoryProduct;
 import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.domain.Product;
@@ -21,7 +20,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class StepDefinition extends SpringIntegrationTest {
+public class StepDefinition extends CucumberContext {
 
     private Response response;
 
