@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/checkout/create"
+  },
+
+  "response": {
+    "status": 201,
+    "bodyFileName": "checkout-201.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
