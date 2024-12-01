@@ -1,4 +1,5 @@
 package com.fiap.burguer.core.application.usecases;
+
 import com.fiap.burguer.core.application.exception.RequestException;
 import com.fiap.burguer.core.application.exception.ResourceNotFoundException;
 import com.fiap.burguer.core.application.enums.StatusOrder;
@@ -36,7 +37,7 @@ public class OrdersStatusUseCase {
             throw new RequestException("Atualização de status para: " + newStatus + " inválida");
         }
         order.setStatus(newStatus);
-        orderPort.save(order);
+        orderPort.save(order, authorizationHeader);
     }
 
     public boolean isValidStatusUpdate(StatusOrder currentStatus, StatusOrder newStatus) {
@@ -56,8 +57,7 @@ public class OrdersStatusUseCase {
             return false;
         }
         return switch (currentStatus) {
-            case WAITINGPAYMENT ->
-                    newStatus == StatusOrder.APPROVEDPAYMENT ||
+            case WAITINGPAYMENT -> newStatus == StatusOrder.APPROVEDPAYMENT ||
                     newStatus == StatusOrder.REJECTEDPAYMENT ||
                     newStatus == StatusOrder.CANCELED;
             case APPROVEDPAYMENT -> newStatus == StatusOrder.RECEIVED;
@@ -72,7 +72,4 @@ public class OrdersStatusUseCase {
     public boolean isCancelValid(StatusOrder currentStatus) {
         return currentStatus == StatusOrder.WAITINGPAYMENT || currentStatus == StatusOrder.REJECTEDPAYMENT;
     }
-
-
-
 }

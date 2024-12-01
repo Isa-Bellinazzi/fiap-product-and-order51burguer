@@ -64,11 +64,13 @@ public class OrderController implements OrderApi {
 
         Order order = getOrderByIdUseCase.getOrderById(id);
 
+        if(newStatus == StatusOrder.APPROVEDPAYMENT){
+            ordersByStatusUseCase.updateOrderStatus(order, newStatus, authorizationHeader);
+            newStatus = StatusOrder.RECEIVED;
+        order.setStatus(StatusOrder.APPROVEDPAYMENT);
+        }
         ordersByStatusUseCase.updateOrderStatus(order, newStatus, authorizationHeader);
         OrderResponse response = OrderPresenter.mapOrderToResponse(order);
         return ResponseEntity.ok(response);
     }
-
-
-
 }

@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -16,14 +17,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 	private ApplicationContext applicationContext;
 
 	@Test
-	void contextLoads() {
-		// Verifica se o contexto da aplicação carrega sem erros
-		assertThat(applicationContext).isNotNull();
-	}
-
-	@Test
-	void applicationContextTest() {
-		// Verifica se o contexto da aplicação está carregado corretamente
-		assertThat(applicationContext.getBeanDefinitionCount()).isGreaterThan(0);
+	void mainTest() {
+		Application.main(new String[]{});
+		assertNotNull(applicationContext, "O contexto da aplicação não foi carregado.");
 	}
 }

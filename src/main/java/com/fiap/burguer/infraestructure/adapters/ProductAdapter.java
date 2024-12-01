@@ -6,6 +6,7 @@ import com.fiap.burguer.infraestructure.repository.ProductRepository;
 import com.fiap.burguer.core.application.ports.ProductPort;
 import com.fiap.burguer.core.domain.Product;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component
@@ -13,7 +14,6 @@ public class ProductAdapter implements ProductPort {
 
     private final ProductRepository productRepository;
 
-    // Construtor para injeção das dependências
     public ProductAdapter(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
