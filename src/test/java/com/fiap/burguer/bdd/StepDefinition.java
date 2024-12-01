@@ -5,6 +5,7 @@ import com.fiap.burguer.core.application.enums.CategoryProduct;
 import com.fiap.burguer.core.application.enums.StatusOrder;
 import com.fiap.burguer.core.domain.Product;
 import com.fiap.burguer.driver.dto.*;
+import com.fiap.burguer.utils.TestTokenUtil;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
@@ -17,6 +18,7 @@ import org.springframework.http.MediaType;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -26,7 +28,14 @@ public class StepDefinition extends CucumberContext {
 
     private OrderResponse orderResponse;
 
-    private String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcGYiOiI3NzU4MjkzMDAwMiIsIm5hbWUiOiJNYXJpYSBOdW5lcyIsImlkIjoyLCJpc0FkbWluIjp0cnVlLCJleHAiOjE3MzQxOTM1MTgsImVtYWlsIjoibWFyaWFOdW5lc0BleGFtcGxlLmNvbSJ9.2mOK0LBKuy2lAXFrEuoUQxTvHzXq8ypDS8vnW-b3sD8";
+    private String token = TestTokenUtil.generateValidMockToken(Map.of(
+            "cpf", "12345678901",
+            "name", "Mock User",
+            "id", 123,
+            "isAdmin", true,
+            "exp", 1893456000,
+            "email", "mock@user.com"
+            ));
 
     private String ENDPOINT_BASE_ORDER = "http://localhost:8080/orders";
 
