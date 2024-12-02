@@ -43,9 +43,9 @@ spec:
                 secretKeyRef:
                   name: secret-burguer51
                   key: POSTGRES_PASSWORD
-          image: 375275125343.dkr.ecr.us-east-1.amazonaws.com/51burguer-image:latest
+          image: ${{ secrets.REPO_ECR }}/order-51-burguer-app:latest
           imagePullPolicy: IfNotPresent
-          name: 51-burguer-app
+          name: order-51-burguer-app
           resources:
             requests:
               cpu: 100m
