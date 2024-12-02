@@ -44,7 +44,7 @@ jobs:
       - name: Kube Secrets
         if: ${{ github.ref_name == 'master' }} && github.event_name == 'push'
         run: | 
-         kubectl create secret generic secret-burguer51 \
+         kubectl create secret generic secret-orderburguer51 \
             --from-literal=POSTGRES_URL="${{ secrets.POSTGRES_URL }}" \
             --from-literal=POSTGRES_DATABASE=${{ secrets.POSTGRES_DATABASE }} \
             --from-literal=POSTGRES_USER=${{ secrets.POSTGRES_USER }} \

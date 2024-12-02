@@ -26,22 +26,22 @@ spec:
             - name: POSTGRES_URL
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_URL
             - name: POSTGRES_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_DATABASE
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_USER
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_PASSWORD
           image: 742943855162.dkr.ecr.us-east-1.amazonaws.com/burguer-51/order-51-burguer-app:latest
           imagePullPolicy: IfNotPresent

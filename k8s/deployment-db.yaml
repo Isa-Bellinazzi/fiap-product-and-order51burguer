@@ -26,32 +26,32 @@ spec:
             - name: POSTGRES_URL
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_URL
             - name: POSTGRES_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_DATABASE
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_USER
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_PASSWORD
             - name: POSTGRES_ROOT_USER
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_ROOT_USER
             - name: POSTGRES_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: secret-burguer51
+                  name: secret-orderburguer51
                   key: POSTGRES_ROOT_PASSWORD
           image: postgres
           name: postgres
