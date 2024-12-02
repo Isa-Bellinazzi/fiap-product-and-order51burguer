@@ -43,7 +43,7 @@ spec:
                 secretKeyRef:
                   name: secret-burguer51
                   key: POSTGRES_PASSWORD
-          image: ${{ secrets.REPO_ECR }}/order-51-burguer-app:latest
+          image: 742943855162.dkr.ecr.us-east-1.amazonaws.com/burguer-51/order-51-burguer-app:latest
           imagePullPolicy: IfNotPresent
           name: order-51-burguer-app
           resources:
