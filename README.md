@@ -156,3 +156,4 @@ Após a instalação executar os comandos ordenados abaixo na pasta raiz da apli
 
 ## 📄 Licença
 Não se aplica.
+
