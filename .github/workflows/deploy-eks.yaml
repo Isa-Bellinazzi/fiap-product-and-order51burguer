@@ -32,12 +32,12 @@ jobs:
       - name: Package & Tag
         run: | 
           docker compose -f Docker/docker-compose.yml build web
-          docker tag docker.io/library/51-burguer-app secrets.REPO_ECR/51burguer-order-and-product-image:latest
+          docker tag docker.io/library/51-burguer-app ${{ secrets.REPO_ECR }}/51burguer-order-and-product-image:latest
           docker ps
 
       - name: Push to ECR
         run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin secrets.REPO_ECR
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.REPO_ECR }}
           docker push ${{ secrets.REPO_ECR }}/51burguer-order-and-product-image:latest
           
 
