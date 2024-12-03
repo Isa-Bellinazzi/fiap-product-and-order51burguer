@@ -30,9 +30,7 @@ public class OrderAdapter implements OrderPort {
     public Order save(Order order, String authorizationHeader) {
         OrderEntity orderEntity = modelMapper.map(order, OrderEntity.class);
         OrderEntity orderEntityResponse = orderRepository.save(orderEntity);
-        if (order.getStatus() == StatusOrder.WAITINGPAYMENT) {
-            createCheckout(orderEntityResponse, authorizationHeader);
-        }
+
         return modelMapper.map(orderEntityResponse, Order.class);
     }
 
@@ -66,31 +64,4 @@ public class OrderAdapter implements OrderPort {
         orderRepository.deleteById(id);
     }
 
-    @Override
-    public void createCheckout(OrderEntity orderEntity, String authorizationHeader) {
-        final RestTemplate restTemplate = new RestTemplate();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", authorizationHeader);
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("orderId", orderEntity.getId());
-        requestBody.put("totalPrice", orderEntity.getTotalPrice());
-
-        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
-
-        try {
-            restTemplate.exchange(
-                    "${{ secrets.CHECKOUT_BASE_URL }}/checkout/create",
-                    HttpMethod.POST,
-                    entity,
-                    Void.class
-            );
-
-
-        } catch (HttpClientErrorException e) {
-            throw new RuntimeException("Erro ao criar o checkout.", e);
-        }
-    }
 }

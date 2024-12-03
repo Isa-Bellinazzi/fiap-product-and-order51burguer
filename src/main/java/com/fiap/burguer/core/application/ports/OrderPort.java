@@ -12,5 +12,4 @@ public interface OrderPort {
     List<Order> findAll();
     List<Order> findByStatus(StatusOrder status);
     void deleteById(int id);
-    void createCheckout (OrderEntity orderEntity, String authorizationHeader);
 }
