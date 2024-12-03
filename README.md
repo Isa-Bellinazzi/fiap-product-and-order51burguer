@@ -39,7 +39,6 @@ Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
   [fiap-lambda51burguer](https://github.com/julianoBeerg/fiap-lambda51burguer)
 
 ### Recursos Adicionais
-
 - **Collection para Importar no Postman:**  
   [FIAP - Burger API.postman_collection.json](https://github.com/GuiMM/fiap-51burguer/blob/master/FIAP%20-%20Burger%20API.postman_collection.json)
 
