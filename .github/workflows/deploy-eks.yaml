@@ -32,14 +32,13 @@ jobs:
       - name: Package & Tag
         run: | 
           docker compose -f Docker/docker-compose.yml build web
-          docker tag order-51-burguer-app:latest 742943855162.dkr.ecr.us-east-1.amazonaws.com/burguer-51/order-51-burguer-app:latest
+          docker tag order-51-burguer-app:latest 742943855162.dkr.ecr.us-east-1.amazonaws.com/order-51-burguer-app:latest
           docker ps
 
       - name: Push to ECR
         run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 742943855162.dkr.ecr.us-east-1.amazonaws.com/burguer-51
-          docker push 742943855162.dkr.ecr.us-east-1.amazonaws.com/burguer-51/order-51-burguer-app:latest
-          
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 742943855162.dkr.ecr.us-east-1.amazonaws.com
+          docker push 742943855162.dkr.ecr.us-east-1.amazonaws.com/order-51-burguer-app:latest    
 
       - name: Kube Secrets
         if: ${{ github.ref_name == 'master' }} && github.event_name == 'push'
