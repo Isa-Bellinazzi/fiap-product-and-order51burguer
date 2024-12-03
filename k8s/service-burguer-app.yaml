@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: burguer-app
-  name: burguer-app
+    app: order-51-burguer-app
+  name: order-51-burguer-app
 spec:
   type: LoadBalancer
   allocateLoadBalancerNodePorts: true
@@ -18,5 +18,5 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: burguer-app
+    app: order-51-burguer-app
   sessionAffinity: None
