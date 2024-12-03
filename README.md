@@ -15,7 +15,17 @@ Juliano Silva Nunes - RM 354144 - silva.juliano8130@gmail.com
 Thiago Augusto Nery - RM 355063 - doomerbr@gmail.com
 
 
-# FIAP 51Burger - Projeto
+# FIAP 51Burger - Produto e Pedido
+
+## 🛠 Cobertura de testes e coverage do microserviço de Produto e Pedido
+
+Testes unitários
+![image](https://github.com/user-attachments/assets/24624475-3d4b-4495-ab56-c0570bbe0e5f)
+![image](https://github.com/user-attachments/assets/967a443b-e724-4f12-88fc-6114374ed801)
+
+Cucumber
+![image](https://github.com/user-attachments/assets/479483e3-5962-459b-8e80-1df25bdad8af)
+
 
 ## 📁 Acesso ao Projeto
 
