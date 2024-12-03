@@ -13,7 +13,7 @@ spec:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - nodePort: 30789
+  - nodePort: 30791
     port: 80
     protocol: TCP
     targetPort: 80
