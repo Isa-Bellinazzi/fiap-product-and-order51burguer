@@ -59,7 +59,7 @@ Cucumber
   [YouTube - PosTech Software Architecture Grupo 51](https://www.youtube.com/watch?v=Zi2BFEvv9kk&ab_channel=PosTech-SoftwareArchitectureGrupo51)
 
 - **Vídeo da quarta Fase do Projeto:**  
-  [YouTube - PosTech Software Architecture Grupo 51](https://www.youtube.com/watch?v=Zi2BFEvv9kk&ab_channel=PosTech-SoftwareArchitectureGrupo51)
+  [YouTube - PosTech Software Architecture Grupo 51](https://www.youtube.com/watch?v=1WUWUEvXvqU)
 
 - **PDF com Vídeo, Diagramas e Modelagens:**  
   [Documento Google](https://docs.google.com/document/d/1Ay-OWOHbjec_wPjQI0ntPJny1N1lfZJFQqEHw97hONQ/edit?usp=drive_link)
